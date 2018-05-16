@@ -1,0 +1,42 @@
+﻿<#@ template language="C#" debug="True" #>
+<#@ output extension="cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="EntityFramework" #>
+<#@ Assembly Name="$(SolutionDir)\WebSite.Common\bin\Debug\WebSite.Common.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ Import Namespace="System.Linq" #>
+<#@ Import Namespace="System.Text" #>
+<#@ import namespace="System.Data.Entity" #>
+<#@ import namespace="System.Reflection" #>
+<#@ Import Namespace="System.Collections.Generic" #>
+<#@ Import Namespace="WebSite.Common.T4.Model" #>
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="..\Include\EntityDbSessionTemplate.tt" #>
+<#
+    bool isRun = false;
+    //isRun = true;
+    if(isRun)
+    {
+        //D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\T4\Script
+        string currentPath = Path.GetDirectoryName(Host.TemplateFile);
+        //D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\T4
+        string projectPath = currentPath.Substring(0, currentPath.IndexOf(@"\T4") + 3);
+        //D:\CodeTemp\VS2017\WebMVCSite
+        string solutionPath = currentPath.Substring(0, currentPath.IndexOf(@"\WebSite.Common"));
+        //D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\bin\Debug\WebSite.Common.dll
+        string modelFile = Path.Combine(solutionPath, @"WebSite.Model\bin\Debug\WebSite.Model.dll");
+        byte[] fileData = File.ReadAllBytes(modelFile);
+        Assembly assembly = Assembly.Load(fileData);
+        Type type = assembly.GetTypes().FirstOrDefault(m => m.BaseType.Name.Equals("DbContext"));
+        if (type != null)
+        {
+            T4ModelInfo model = new T4ModelInfo(type);
+            //实体映射类
+            EntityDbSessionTemplate config = new EntityDbSessionTemplate(model);
+            string path = string.Format(@"{0}\PartialClass\WebSite.DALFactory\Generated", projectPath);
+            config.Output.Encoding = Encoding.UTF8;
+            config.RenderToFile(Path.Combine(path, config.GeneratedFileNameWithExtension));
+        }
+    }
+#>

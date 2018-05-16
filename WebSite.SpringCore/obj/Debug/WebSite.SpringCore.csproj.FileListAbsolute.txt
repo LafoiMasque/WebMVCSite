@@ -1,0 +1,12 @@
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\obj\Debug\WebSite.SpringCore.csprojResolveAssemblyReference.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\obj\Debug\WebSite.SpringCore.csproj.CoreCompileInputs.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\bin\Debug\WebSite.SpringCore.exe.config
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\bin\Debug\WebSite.SpringCore.exe
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\bin\Debug\WebSite.SpringCore.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\bin\Debug\Common.Logging.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\bin\Debug\Spring.Core.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\bin\Debug\Spring.Core.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\bin\Debug\Spring.Core.xml
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\obj\Debug\WebSite.SpringCore.csproj.CopyComplete
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\obj\Debug\WebSite.SpringCore.exe
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringCore\obj\Debug\WebSite.SpringCore.pdb

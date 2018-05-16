@@ -1,0 +1,15 @@
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\WebSite.IDAL.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\WebSite.IDAL.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\WebSite.Model.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\EntityFramework.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\WebSite.Model.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\WebSite.Model.dll.config
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\EntityFramework.xml
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\obj\Debug\WebSite.IDAL.csprojResolveAssemblyReference.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\obj\Debug\WebSite.IDAL.csproj.CoreCompileInputs.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\obj\Debug\WebSite.IDAL.csproj.CopyComplete
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\obj\Debug\WebSite.IDAL.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\obj\Debug\WebSite.IDAL.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\Newtonsoft.Json.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IDAL\bin\Debug\Newtonsoft.Json.xml

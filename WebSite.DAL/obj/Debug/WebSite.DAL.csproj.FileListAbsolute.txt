@@ -1,0 +1,17 @@
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\obj\Debug\WebSite.DAL.csprojResolveAssemblyReference.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\obj\Debug\WebSite.DAL.csproj.CoreCompileInputs.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\WebSite.DAL.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\WebSite.DAL.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\EntityFramework.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\WebSite.IDAL.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\WebSite.Model.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\WebSite.IDAL.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\WebSite.Model.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\WebSite.Model.dll.config
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\EntityFramework.xml
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\obj\Debug\WebSite.DAL.csproj.CopyComplete
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\obj\Debug\WebSite.DAL.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\obj\Debug\WebSite.DAL.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\Newtonsoft.Json.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.DAL\bin\Debug\Newtonsoft.Json.xml
