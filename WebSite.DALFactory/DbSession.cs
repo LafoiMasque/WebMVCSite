@@ -10,13 +10,7 @@ namespace WebSite.DALFactory
 	/// </summary>
 	public partial class DbSession : IDbSession//<T> where T : class, new()
 	{
-		//public DbContext DbContext
-		//{
-		//	get
-		//	{
-		//		return DbContextFactory.CreateDbContext();
-		//	}
-		//}
+		public DbContext DbContext { get { return DbContextFactory.CreateDbContext(); } }
 
 		//private IUserInfoDal m_userInfoDal = null;
 
@@ -49,13 +43,19 @@ namespace WebSite.DALFactory
 		////	set => m_createInstanceDal = value;
 		////}
 
-		///// <summary>
-		///// 一个业务中经常涉及到对多张操作，我们希望链接一次数据库，完成对张表数据的操作。提高性能。 工作单元模式。
-		///// </summary>
-		///// <returns></returns>
-		//public bool SaveChanged()
+		/// <summary>
+		/// 一个业务中经常涉及到对多张操作，我们希望链接一次数据库，完成对张表数据的操作。提高性能。 工作单元模式。
+		/// </summary>
+		/// <returns></returns>
+		public bool SaveChanged()
+		{
+			return DbContext.SaveChanges() > 0;
+		}
+
+		//public int ExecuteSql(string sql, params object[] pars)
 		//{
-		//	return DbContext.SaveChanges() > 0;
+		//	return DbContext.Database.ExecuteSqlCommand(sql, pars);
 		//}
+
 	}
 }

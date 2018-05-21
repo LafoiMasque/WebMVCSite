@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -76,6 +77,41 @@ namespace WebSite.DAL
 				temp = temp.OrderByDescending(orderByLambda).Skip((pageIndex - 1) * pageSize).Take(pageSize);
 			}
 			return temp;
+		}
+
+		/// <summary>
+		/// 执行sql语句
+		/// </summary>
+		/// <param name="sql">sql语句</param>
+		/// <param name="pars">参数</param>
+		/// <returns></returns>
+		public bool ExecuteSql(string sql, params object[] pars)
+		{
+			return m_dBContext.Database.ExecuteSqlCommand(sql, pars) > 0;
+		}
+
+		/// <summary>
+		/// 执行sql语句查询，返回给定类型的元素
+		/// </summary>
+		/// <param name="sql"></param>
+		/// <param name="pars"></param>
+		/// <returns></returns>
+		public M ExecuteQuery<M>(string sql, params object[] pars)
+		{
+			Type type = typeof(M);
+			var result = m_dBContext.Database.SqlQuery(type, sql, pars);
+			return default(M);
+		}
+
+		/// <summary>
+		/// 执行sql语句查询，返回给定类型的元素集合
+		/// </summary>
+		/// <param name="sql"></param>
+		/// <param name="pars"></param>
+		/// <returns></returns>
+		public List<M> ExecuteQueryList<M>(string sql, params object[] pars)
+		{
+			return m_dBContext.Database.SqlQuery<M>(sql, pars).ToList();
 		}
 	}
 }

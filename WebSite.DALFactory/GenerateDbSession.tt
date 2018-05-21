@@ -49,7 +49,6 @@ namespace WebSite.DALFactory
 	/// </summary>
 	public partial class DbSession : IDbSession
 	{
-		public DbContext DbContext { get { return DbContextFactory.CreateDbContext(); } }
 <#
                 PropertyInfo[] types = type.GetProperties();
                 foreach (PropertyInfo item in types)
@@ -61,7 +60,6 @@ namespace WebSite.DALFactory
                         string interfaceName = string.Format("I{0}", InstanceName);
                         string fieldName = string.Format("_{0}{1}", InstanceName.Substring(0,1).ToLower(), InstanceName.Substring(1));
                     #>
-
         private <#= interfaceName #> <#= fieldName #> = null;
         /// <summary>
 		/// 获取<#= interfaceName #>接口的实例
@@ -78,19 +76,11 @@ namespace WebSite.DALFactory
 				return <#= fieldName #>;
 			}
 		}
+
 <#
                     }
                 }
-#>      
-        /// <summary>
-		/// 一个业务中经常涉及到对多张操作，我们希望链接一次数据库，完成对张表数据的操作。提高性能。 工作单元模式。
-		/// </summary>
-		/// <returns></returns>
-		public bool SaveChanged()
-		{
-			return DbContext.SaveChanges() > 0;
-		}
-    }
+#>    }
 }<#
             }
         }

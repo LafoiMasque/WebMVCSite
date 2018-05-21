@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebSite.BLL;
 using WebSite.IBLL;
 using WebSite.Model.DataBaseModel;
+using WebSite.Model.DataModel;
 using WebSite.Model.EnumType;
 using WebSite.Model.Search;
 using WebSite.WebApp.CustomAttribute;
@@ -20,7 +21,7 @@ namespace WebSite.WebApp.Controllers
 		public IRoleInfoService RoleInfoService { get; set; }
 		public IActionInfoService ActionInfoService { get; set; }
 		public IUserInfo_ActionInfoService UserInfo_ActionInfoService { get; set; }
-		
+
 		public ActionResult Index()
 		{
 			//int a = 1, b = 0;
@@ -82,7 +83,9 @@ namespace WebSite.WebApp.Controllers
 			}
 			//将list集合存储要删除的记录编号发送到服务端
 			bool isOK = UserInfoService.DeleteEntities(list);
-			return Content(isOK.ToString());
+			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			return Json(resultModel);
 		}
 
 		/// <summary>
@@ -96,7 +99,9 @@ namespace WebSite.WebApp.Controllers
 			userInfo.CreaterId = 1;
 			userInfo.Account = userInfo.UserName;
 			bool isOK = UserInfoService.AddEntity(userInfo);
-			return Content(isOK.ToString());
+			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			return Json(resultModel);
 		}
 
 		/// <summary>
@@ -108,7 +113,8 @@ namespace WebSite.WebApp.Controllers
 		{
 			int id = int.Parse(Request["id"]);
 			var userInfo = UserInfoService.LoadEntities(o => o.Id == id).FirstOrDefault();
-			return Json(userInfo, JsonRequestBehavior.AllowGet);
+			ResultModel<UserInfo> resultModel = new ResultModel<UserInfo>(userInfo);
+			return Json(resultModel, JsonRequestBehavior.AllowGet);
 		}
 
 		/// <summary>
@@ -120,7 +126,9 @@ namespace WebSite.WebApp.Controllers
 		{
 			userInfo.LastModifyTime = DateTime.Now;
 			bool isOK = UserInfoService.EditEntity(userInfo);
-			return Content(isOK.ToString());
+			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			return Json(resultModel);
 		}
 
 		/// <summary>
@@ -149,7 +157,6 @@ namespace WebSite.WebApp.Controllers
 		/// <returns></returns>
 		public ActionResult SetUserRoleInfo()
 		{
-			string result = null;
 			int userId = int.Parse(Request["userId"]);
 			//获取所有表单元素name属性值。
 			string[] allKeys = Request.Form.AllKeys;
@@ -163,11 +170,10 @@ namespace WebSite.WebApp.Controllers
 					roleIdList.Add(Convert.ToInt32(k));
 				}
 			}
-			if (UserInfoService.SetUserRoleInfo(userId, roleIdList))
-				result = "ok";
-			else
-				result = "no";
-			return Content(result);
+			bool isOK = UserInfoService.SetUserRoleInfo(userId, roleIdList);
+			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			return Json(resultModel);
 		}
 
 		/// <summary>
@@ -196,15 +202,13 @@ namespace WebSite.WebApp.Controllers
 		/// <returns></returns>
 		public ActionResult SetUserAction()
 		{
-			string result = null;
 			int actionId = int.Parse(Request["actionId"]);
 			int userId = int.Parse(Request["userId"]);
 			bool isPass = Request["isPass"] == "true" ? true : false;
-			if (UserInfoService.SetUserActionInfo(actionId, userId, isPass))
-				result = "ok";
-			else
-				result = "no";
-			return Content(result);
+			bool isOK = UserInfoService.SetUserActionInfo(actionId, userId, isPass);
+			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			return Json(resultModel);
 		}
 
 		/// <summary>
@@ -214,21 +218,24 @@ namespace WebSite.WebApp.Controllers
 		public ActionResult ClearUserAction()
 		{
 			string result = null;
+			ResultCodeEnum resultCodeEnum = ResultCodeEnum.Failure;
 			int actionId = int.Parse(Request["actionId"]);
 			int userId = int.Parse(Request["userId"]);
 			var roleInfo_userInfo_actionInfo = UserInfo_ActionInfoService.LoadEntities(r => r.ActionInfoId == actionId && r.UserInfoId == userId).FirstOrDefault();
 			if (roleInfo_userInfo_actionInfo != null)
 			{
 				if (UserInfo_ActionInfoService.DeleteEntity(roleInfo_userInfo_actionInfo))
-					result = "ok:删除成功!!";
+					result = "删除成功!!";
 				else
-					result = "ok:删除失败!!";
+					result = "删除失败!!";
+				resultCodeEnum = ResultCodeEnum.Success;
 			}
 			else
 			{
-				result = "no:数据不存在!!";
+				result = "数据不存在!!";
 			}
-			return Content(result);
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum, result));
+			return Json(resultModel);
 		}
 	}
 }

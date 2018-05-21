@@ -14,7 +14,7 @@
             $("#img").attr("src", $("#img").attr("src") + 1);
         }
         function afterLogin(data) {
-            if (data.Code == 200) {
+            if (data.StatusCode == 200) {
                 document.location.href = "/Home/Index";
             } else {
                 $("#errorMsg").css("display", "block");

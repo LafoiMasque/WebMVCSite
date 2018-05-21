@@ -46,7 +46,6 @@ namespace WebSite.IDAL
 	/// </summary>
 	public partial interface IDbSession
 	{
-        DbContext DbContext { get; }
 <#
                 PropertyInfo[] types = type.GetProperties();
                 foreach (PropertyInfo item in types)
@@ -59,8 +58,7 @@ namespace WebSite.IDAL
 <#
                     }
                 }
-#>      bool SaveChanged();
-    }
+#>    }
 }<#
             }
         }

@@ -62,9 +62,11 @@
     <Compile Include="DataBaseModel\JD_Commodity_003.cs" />
     <Compile Include="DataBaseModel\JD_Commodity_004.cs" />
     <Compile Include="DataBaseModel\JD_Commodity_005.cs" />
+    <Compile Include="DataBaseModel\KeyWordsRank.cs" />
     <Compile Include="DataBaseModel\RoleInfo.cs" />
     <Compile Include="DataBaseModel\RoleInfo_ActionInfo.cs" />
     <Compile Include="DataBaseModel\RoleInfo_UserInfo.cs" />
+    <Compile Include="DataBaseModel\SearchDetails.cs" />
     <Compile Include="DataBaseModel\UserInfo.cs" />
     <Compile Include="DataBaseModel\UserInfo_ActionInfo.cs" />
     <Compile Include="DataBaseModel\UserInfo_DepartmentInfo.cs" />

@@ -8,7 +8,7 @@ namespace WebSite.Model.DataModel
 {
 	public class CodeMessage
 	{
-		public int Code { get; private set; }
+		public int StatusCode { get; private set; }
 		public string Message { get; private set; }
 
 		private static readonly List<KeyValuePair<int, string>> m_keyValuePair = null;
@@ -39,15 +39,21 @@ namespace WebSite.Model.DataModel
 
 		public CodeMessage(int code, string message)
 		{
-			Code = code;
+			StatusCode = code;
 			Message = message;
+		}
+
+		public CodeMessage(ResultCodeEnum resultCodeEnum)
+		{
+			StatusCode = GetStatusCode(resultCodeEnum);
+			Message = GetMessage(resultCodeEnum);
 		}
 
 		public CodeMessage(ResultCodeEnum resultCodeEnum, string message) : this((int)resultCodeEnum, message)
 		{
 		}
 
-		public static int GetCode(ResultCodeEnum resultCodeEnum)
+		public static int GetStatusCode(ResultCodeEnum resultCodeEnum)
 		{
 			return (int)resultCodeEnum;
 		}

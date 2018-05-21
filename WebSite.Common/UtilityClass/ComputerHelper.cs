@@ -18,6 +18,8 @@ namespace WebSite.Common.UtilityClass
 	/// </summary>
 	public class ComputerHelper
 	{
+		#region other
+
 		///// <summary>
 		///// 操作系统的登录用户名
 		///// </summary>
@@ -403,6 +405,8 @@ namespace WebSite.Common.UtilityClass
 		//	}
 		//	return root;
 		//}
+
+		#endregion
 
 		/// <summary>  
 		/// 获取当前使用的IP  

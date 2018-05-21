@@ -46,6 +46,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateService.tt</DependentUpon>
     </Compile>
+    <Compile Include="KeyWordsRankService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleInfoService.cs" />
     <Compile Include="UserInfoService.cs" />

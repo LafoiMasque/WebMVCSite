@@ -2,12 +2,16 @@
 using log4net.Config;
 using Spring.Web.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebSite.Core.Lucene.Net;
+using WebSite.Model.DataBaseModel;
 using WebSite.WebApp.CustomAttribute;
+using static Lucene.Net.Documents.Field;
 
 namespace WebSite.WebApp
 {
@@ -17,6 +21,29 @@ namespace WebSite.WebApp
 		{
 			//读取了配置文件中关于Log4Net配置信息.
 			XmlConfigurator.Configure();
+			//开始线程扫描LuceneNet对应的数据队列。
+			IndexManager<JD_Commodity_001>.InitData(System.Configuration.ConfigurationManager.AppSettings["LuceneNetDir"], new List<LuceneDataModel>()
+			{
+				new LuceneDataModel()
+				{
+					FieldName="Id",
+					PropertyName="Id",
+				},
+				new LuceneDataModel()
+				{
+					FieldName="Title",
+					PropertyName="Title",
+					Index=Index.ANALYZED,
+					TermVector=TermVector.WITH_POSITIONS_OFFSETS,
+				},
+				new LuceneDataModel()
+				{
+					FieldName="Price",
+					PropertyName="Price",
+					Index=Index.ANALYZED,
+					TermVector=TermVector.WITH_POSITIONS_OFFSETS,
+				}
+			});
 
 			AreaRegistration.RegisterAllAreas();
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -32,7 +59,7 @@ namespace WebSite.WebApp
 					if (WebSiteExceptionAttribute.ExceptionQueue.Count > 0)
 					{
 						Exception ex = WebSiteExceptionAttribute.ExceptionQueue.Dequeue();
-						if (ex!=null)
+						if (ex != null)
 						{
 							//将异常信息写到日志文件中。
 							//string fileName = DateTime.Now.ToString("yyyy-MM-dd");

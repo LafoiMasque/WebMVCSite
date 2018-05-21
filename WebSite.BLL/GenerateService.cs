@@ -9,7 +9,7 @@
 // <copyright file="WebSiteDbContext">
 //		Copyright(c)2018 rights reserved.
 //		开 发 者：黄翔宇@中国
-//		生成时间：2018-05-09 17:58
+//		生成时间：2018-05-18 16:33
 // </copyright>
 //------------------------------------------------------------------------------
 using WebSite.IBLL;
@@ -117,6 +117,17 @@ namespace WebSite.BLL
 	}
 
     /// <summary>
+    /// 实体类-数据表映射——KeyWordsRank
+    /// </summary>  
+	public partial class KeyWordsRankService : BaseService<KeyWordsRank>, IKeyWordsRankService
+	{
+		public override void SetCurrentDal()
+		{
+			CurrentDal = CurrentDbSession.KeyWordsRankDal;
+		}
+	}
+
+    /// <summary>
     /// 实体类-数据表映射——RoleInfo
     /// </summary>  
 	public partial class RoleInfoService : BaseService<RoleInfo>, IRoleInfoService
@@ -146,6 +157,17 @@ namespace WebSite.BLL
 		public override void SetCurrentDal()
 		{
 			CurrentDal = CurrentDbSession.RoleInfo_UserInfoDal;
+		}
+	}
+
+    /// <summary>
+    /// 实体类-数据表映射——SearchDetails
+    /// </summary>  
+	public partial class SearchDetailsService : BaseService<SearchDetails>, ISearchDetailsService
+	{
+		public override void SetCurrentDal()
+		{
+			CurrentDal = CurrentDbSession.SearchDetailsDal;
 		}
 	}
 

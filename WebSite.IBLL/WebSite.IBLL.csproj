@@ -46,6 +46,7 @@
       <DependentUpon>GenerateIService.tt</DependentUpon>
     </Compile>
     <Compile Include="IBaseService.cs" />
+    <Compile Include="IKeyWordsRankService.cs" />
     <Compile Include="IRoleInfoService.cs" />
     <Compile Include="IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

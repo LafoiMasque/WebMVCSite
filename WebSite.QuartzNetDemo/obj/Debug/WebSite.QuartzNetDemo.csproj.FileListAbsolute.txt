@@ -1,0 +1,10 @@
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\bin\Debug\WebSite.QuartzNetDemo.exe.config
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\bin\Debug\WebSite.QuartzNetDemo.exe
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\bin\Debug\WebSite.QuartzNetDemo.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\bin\Debug\Common.Logging.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\bin\Debug\Quartz.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.csproj.CoreCompileInputs.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.csproj.CopyComplete
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.exe
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.csprojResolveAssemblyReference.cache

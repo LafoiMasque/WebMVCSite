@@ -7,9 +7,10 @@ namespace WebSite.IDAL
 	/// </summary>
 	public partial interface IDbSession//<T> where T : class, new()
 	{
-		//DbContext DbContext { get; }
+		DbContext DbContext { get; }
 		//IUserInfoDal UserInfoDal { get; set; }
 		////T CreateInstanceDal { get; set; }
-		//bool SaveChanged();
+		bool SaveChanged();
+		//int ExecuteSql(string sql, params object[] pars);
 	}
 }

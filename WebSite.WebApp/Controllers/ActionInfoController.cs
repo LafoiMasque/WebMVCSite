@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebSite.IBLL;
 using WebSite.Model.DataBaseModel;
+using WebSite.Model.DataModel;
 using WebSite.Model.EnumType;
 using WebSite.WebApp.CustomAttribute;
 
@@ -55,7 +56,7 @@ namespace WebSite.WebApp.Controllers
 		/// <returns></returns>
 		public ActionResult GetFileUp()
 		{
-			string result = null;
+			ResultModel<string> resultModel = null;
 			HttpPostedFileBase file = Request.Files["fileUp"];
 			string fileName = Path.GetFileName(file.FileName);
 			string fileExt = Path.GetExtension(fileName);
@@ -67,13 +68,13 @@ namespace WebSite.WebApp.Controllers
 				string fullDir = dir + newfileName + fileExt;
 				file.SaveAs(Request.MapPath(fullDir));
 				//自己加上图片的缩略图
-				result = "ok:" + fullDir;
+				resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Success, fullDir));
 			}
 			else
 			{
-				result = "no:文件类型错误!!";
+				resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Failure, "文件类型错误!!"));
 			}
-			return Content(result);
+			return Json(resultModel, JsonRequestBehavior.AllowGet);
 		}
 
 		/// <summary>
@@ -87,7 +88,8 @@ namespace WebSite.WebApp.Controllers
 			actionInfo.CreateTime = actionInfo.LastModifyTime = DateTime.Now;
 			actionInfo.Url = actionInfo.Url.ToLower();
 			ActionInfoService.AddEntity(actionInfo);
-			return Content("ok");
+			ResultModel<string> resultModel = new ResultModel<string>();
+			return Json(resultModel);
 		}
 	}
 }

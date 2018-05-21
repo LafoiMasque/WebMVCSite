@@ -178,7 +178,7 @@
 
         //为用户分配完成角色以后调用的方法。
         function afterSetUserRole(data) {
-            if (data == "ok") {
+            if (data.StatusCode == 200) {
                 $('#setUsrRoleDiv').dialog('close');
             }
 
@@ -203,7 +203,7 @@
                     //去掉最后一个逗号.
                     strId = strId.substr(0, strId.length - 1);
                     $.post("/UserInfo/DeleteUserInfo", { "strId": strId }, function (data) {
-                        if (data.toLowerCase() == "true") {
+                        if (data.StatusCode == 200) {
                             $('#tt').datagrid('reload');//加载表格不会跳到第一页。
                             //清除上次操作的历史的记录。
                             $('#tt').datagrid('clearSelections')
@@ -246,7 +246,7 @@
 
         //完成添加后调用该方法
         function afterAdd(data) {
-            if (data.toLowerCase() == "true") {
+            if (data.StatusCode == 200) {
                 $("#addDiv").dialog("close");
                 //加载表格不会跳到第一页。
                 $("#tt").datagrid("reload");
@@ -300,7 +300,7 @@
             //将要修改的数据查询出来，显示到文本框中。
             var id = rows[0].Id;
             $.post("/UserInfo/ShowUserInfo", { "id": id }, function (data) {
-                if (data != null) {
+                if (data.Data != null) {
                     $("#txtId").val(data.Id);
                     $("#txtUserName").val(data.UserName);
                     $("#txtUserPassword").val(data.UserPassword);
@@ -340,7 +340,7 @@
 
         //更新以后调用该方法.
         function afterEdit(data) {
-            if (data.toLowerCase() == "true") {
+            if (data.StatusCode == 200) {
                 $("#editDiv").dialog('close');
                 $("#tt").datagrid("reload");
             }

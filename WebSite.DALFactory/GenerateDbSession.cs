@@ -9,7 +9,7 @@
 // <copyright file="WebSiteDbContext">
 //		Copyright(c)2018 rights reserved.
 //		开 发 者：黄翔宇@中国
-//		生成时间：2018-05-09 17:58
+//		生成时间：2018-05-18 17:59
 // </copyright>
 //------------------------------------------------------------------------------
 using System.Data.Entity;
@@ -24,8 +24,6 @@ namespace WebSite.DALFactory
 	/// </summary>
 	public partial class DbSession : IDbSession
 	{
-		public DbContext DbContext { get { return DbContextFactory.CreateDbContext(); } }
-
         private IActionInfoDal _actionInfoDal = null;
         /// <summary>
 		/// 获取IActionInfoDal接口的实例
@@ -179,6 +177,23 @@ namespace WebSite.DALFactory
 			}
 		}
 
+        private IKeyWordsRankDal _keyWordsRankDal = null;
+        /// <summary>
+		/// 获取IKeyWordsRankDal接口的实例
+		/// </summary>
+		public IKeyWordsRankDal KeyWordsRankDal
+		{
+			get
+			{
+				if (_keyWordsRankDal == null)
+				{
+					//通过抽象工厂封装了类的实例的创建
+					_keyWordsRankDal = AbstractFactory.CreateInstanceDal<IKeyWordsRankDal>();
+				}
+				return _keyWordsRankDal;
+			}
+		}
+
         private IRoleInfoDal _roleInfoDal = null;
         /// <summary>
 		/// 获取IRoleInfoDal接口的实例
@@ -227,6 +242,23 @@ namespace WebSite.DALFactory
 					_roleInfo_UserInfoDal = AbstractFactory.CreateInstanceDal<IRoleInfo_UserInfoDal>();
 				}
 				return _roleInfo_UserInfoDal;
+			}
+		}
+
+        private ISearchDetailsDal _searchDetailsDal = null;
+        /// <summary>
+		/// 获取ISearchDetailsDal接口的实例
+		/// </summary>
+		public ISearchDetailsDal SearchDetailsDal
+		{
+			get
+			{
+				if (_searchDetailsDal == null)
+				{
+					//通过抽象工厂封装了类的实例的创建
+					_searchDetailsDal = AbstractFactory.CreateInstanceDal<ISearchDetailsDal>();
+				}
+				return _searchDetailsDal;
 			}
 		}
 
@@ -280,14 +312,6 @@ namespace WebSite.DALFactory
 				return _userInfo_DepartmentInfoDal;
 			}
 		}
-      
-        /// <summary>
-		/// 一个业务中经常涉及到对多张操作，我们希望链接一次数据库，完成对张表数据的操作。提高性能。 工作单元模式。
-		/// </summary>
-		/// <returns></returns>
-		public bool SaveChanged()
-		{
-			return DbContext.SaveChanges() > 0;
-		}
+
     }
 }

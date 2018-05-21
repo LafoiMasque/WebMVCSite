@@ -33,13 +33,12 @@
           $("#btnFileUp").click(function () {
               $("#addForm").ajaxSubmit({
                   success: function (str) {
-                      var data = str.split(':');
-                      if (data[0] == "ok") {
-                          var img = "<img src='" + data[1] + "' width='30' height='30'/>";
+                      if (data.StatusCode == 200) {
+                          var img = "<img src='" + data.Message + "' width='30' height='30'/>";
                           $("#showImage").append(img);
-                          $("#hiddenMenuIcon").val(data[1]);//将上传成功的图片路径存储到隐藏域中。
+                          $("#hiddenMenuIcon").val(data.Message);//将上传成功的图片路径存储到隐藏域中。
                       } else {
-                          alert(data[1]);
+                          alert(data.Message);
                       }
                   },
                   url: '/ActionInfo/GetFileUp',
@@ -157,7 +156,7 @@
         }
         //添加完成后调用该方法。
         function afterAdd(data) {
-            if (data == "ok") {
+            if (data.StatusCode == 200) {
                 $('#addDiv').dialog('close');
             }
         }

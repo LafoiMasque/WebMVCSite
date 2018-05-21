@@ -9,7 +9,7 @@
 // <copyright file="WebSiteDbContext">
 //		Copyright(c)2018 rights reserved.
 //		开 发 者：黄翔宇@中国
-//		生成时间：2018-05-09 17:58
+//		生成时间：2018-05-18 16:33
 // </copyright>
 //------------------------------------------------------------------------------
 using WebSite.Model.DataBaseModel;
@@ -80,6 +80,13 @@ namespace WebSite.IBLL
 	}
 
     /// <summary>
+    /// 实体类-数据表映射——KeyWordsRank
+    /// </summary>  
+	public partial interface IKeyWordsRankService : IBaseService<KeyWordsRank>
+	{
+	}
+
+    /// <summary>
     /// 实体类-数据表映射——RoleInfo
     /// </summary>  
 	public partial interface IRoleInfoService : IBaseService<RoleInfo>
@@ -97,6 +104,13 @@ namespace WebSite.IBLL
     /// 实体类-数据表映射——RoleInfo_UserInfo
     /// </summary>  
 	public partial interface IRoleInfo_UserInfoService : IBaseService<RoleInfo_UserInfo>
+	{
+	}
+
+    /// <summary>
+    /// 实体类-数据表映射——SearchDetails
+    /// </summary>  
+	public partial interface ISearchDetailsService : IBaseService<SearchDetails>
 	{
 	}
 

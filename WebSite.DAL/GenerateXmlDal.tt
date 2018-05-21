@@ -12,7 +12,7 @@
 <#@ import namespace="System.Reflection" #>
 <#@ Import Namespace="System.Collections.Generic" #>
 <#@ Import Namespace="WebSite.Common.UtilityClass" #>
-<#@ Import Namespace="WebSite.Model.TypeModel" #>
+<#@ Import Namespace="WebSite.Model.DataModel" #>
 <#
     bool isRun = false;
     isRun = true;

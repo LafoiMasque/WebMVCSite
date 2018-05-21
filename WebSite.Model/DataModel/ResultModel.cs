@@ -9,13 +9,13 @@ namespace WebSite.Model.DataModel
 	[Serializable]
 	public class ResultModel<T>
 	{
-		public int Code { get; private set; }
+		public int StatusCode { get; private set; }
 		public string Message { get; private set; }
 		public T Data { get; private set; }
 
 		public ResultModel()
 		{
-			Code = CodeMessage.GetCode(ResultCodeEnum.Success);
+			StatusCode = CodeMessage.GetStatusCode(ResultCodeEnum.Success);
 			Message = CodeMessage.GetMessage(ResultCodeEnum.Success);
 		}
 
@@ -23,7 +23,7 @@ namespace WebSite.Model.DataModel
 		{
 			if (codeMessage != null)
 			{
-				Code = codeMessage.Code;
+				StatusCode = codeMessage.StatusCode;
 				Message = codeMessage.Message;
 			}
 		}

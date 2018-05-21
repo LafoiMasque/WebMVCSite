@@ -138,3 +138,16 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\WebSite.Common.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\WebSite.Common.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Memcached.ClientLibrary.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\ICSharpCode.SharpZipLib.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Lucene.Net.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\PanGu.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\PanGu.Lucene.Analyzer.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\PanGu.HighLight.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Dict\ChsDoubleName1.txt
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Dict\ChsDoubleName2.txt
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Dict\ChsSingleName.txt
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Dict\Stopword.txt
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Dict\Synonym.txt
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Dict\Wildcard.txt
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Dict\Dict.dct
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\WebSite.Core.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\WebSite.Core.pdb

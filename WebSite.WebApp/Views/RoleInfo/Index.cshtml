@@ -117,7 +117,7 @@
 
         //添加完成后调用该方法。
         function afterAdd(data) {
-            if (data=="ok") {
+            if (data.StatusCode == 200) {
                 $("#addDiv").dialog("close");
                 $("#tt").datagrid("reload");//加载表格不会跳到第一页。
             }

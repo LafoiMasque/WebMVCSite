@@ -4,4 +4,7 @@
   <object name="RoleInfoService" type="WebSite.BLL.RoleInfoService, WebSite.BLL" singleton="false"/>
   <object name="ActionInfoService" type="WebSite.BLL.ActionInfoService, WebSite.BLL" singleton="false"/>
   <object name="UserInfo_ActionInfoService" type="WebSite.BLL.UserInfo_ActionInfoService, WebSite.BLL" singleton="false"/>
+  <object name="JD_Commodity_001Service" type="WebSite.BLL.JD_Commodity_001Service, WebSite.BLL" singleton="false"/>
+  <object name="KeyWordsRankService" type="WebSite.BLL.KeyWordsRankService, WebSite.BLL" singleton="false"/>
+  <object name="SearchDetailsService" type="WebSite.BLL.SearchDetailsService, WebSite.BLL" singleton="false"/>
 </objects>

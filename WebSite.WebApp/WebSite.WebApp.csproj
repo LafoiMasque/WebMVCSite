@@ -48,7 +48,7 @@
   <ItemGroup>
     <Reference Include="Common.Logging, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Common.Logging.dll</HintPath>
+      <HintPath>..\Lib\SpringNet\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -58,25 +58,34 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\Lib\log4net.dll</HintPath>
+      <HintPath>..\Lib\log4net\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\Lib\LuceneNet\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PanGu">
+      <HintPath>..\Lib\LuceneNet\PanGu.dll</HintPath>
+    </Reference>
+    <Reference Include="PanGu.Lucene.Analyzer">
+      <HintPath>..\Lib\LuceneNet\PanGu.Lucene.Analyzer.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Spring.Core.dll</HintPath>
+      <HintPath>..\Lib\SpringNet\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Web, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Spring.Web.dll</HintPath>
+      <HintPath>..\Lib\SpringNet\Spring.Web.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Web.Extensions">
-      <HintPath>..\Lib\Spring.Web.Extensions.dll</HintPath>
+      <HintPath>..\Lib\SpringNet\Spring.Web.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Web.Mvc4">
-      <HintPath>..\Lib\Spring.Web.Mvc4.dll</HintPath>
+      <HintPath>..\Lib\SpringNet\Spring.Web.Mvc4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -187,12 +196,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoleInfoController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="CustomAttribute\AuthenLoginAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="CustomAttribute\WebSiteExceptionAttribute.cs" />
+    <Compile Include="Models\ContentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -848,6 +859,24 @@
     <Content Include="Content\themes\metro\tree.css" />
     <Content Include="Content\themes\metro\validatebox.css" />
     <Content Include="Content\themes\metro\window.css" />
+    <Content Include="Dict\ChsDoubleName1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\ChsDoubleName2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\ChsSingleName.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\Stopword.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\Synonym.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dict\Wildcard.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Error.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -859,6 +888,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\lib\ligerUI\skins\icons\新建 Microsoft Office Excel 工作表.xlsx" />
+    <Content Include="Dict\Dict.dct">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datapattern.js" />
     <Content Include="Scripts\easyui-lang-zh_CN.js" />
@@ -898,11 +930,11 @@
     <Content Include="Views\UserInfo\ShowUserAction.cshtml" />
     <Content Include="Views\RoleInfo\ShowRoleAction.cshtml" />
     <Content Include="Views\ActionInfo\Index.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Log\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -926,6 +958,10 @@
     <ProjectReference Include="..\WebSite.Common\WebSite.Common.csproj">
       <Project>{522d5ddd-b93a-4aa7-9b08-c79c34a0460a}</Project>
       <Name>WebSite.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSite.Core\WebSite.Core.csproj">
+      <Project>{da7f0046-aaf8-46a2-800e-ea1020ca985f}</Project>
+      <Name>WebSite.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebSite.IBLL\WebSite.IBLL.csproj">
       <Project>{946197C4-D7F9-438F-8963-6DF403A3925E}</Project>

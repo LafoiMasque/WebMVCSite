@@ -7,6 +7,7 @@ using WebSite.Model.DataBaseModel;
 using WebSite.IBLL;
 using WebSite.Model.EnumType;
 using WebSite.WebApp.CustomAttribute;
+using WebSite.Model.DataModel;
 
 namespace WebSite.WebApp.Controllers
 {
@@ -66,7 +67,8 @@ namespace WebSite.WebApp.Controllers
 			roleInfo.CreateTime = roleInfo.LastModifyTime = DateTime.Now;
 			roleInfo.StateFlag = 0;
 			RoleInfoService.AddEntity(roleInfo);
-			return Content("ok");
+			ResultModel<string> resultModel = new ResultModel<string>();
+			return Json(resultModel);
 		}
 
 		/// <summary>
@@ -98,7 +100,7 @@ namespace WebSite.WebApp.Controllers
 			int roleId = int.Parse(Request["roleId"]);//获取角色编号
 			string[] allKeys = Request.Form.AllKeys;//获取所有表单元素name属性的值。
 			List<int> list = new List<int>();
-			string markString = "cba_", result = null ;
+			string markString = "cba_";
 			foreach (string key in allKeys)
 			{
 				if (key.StartsWith(markString))
@@ -107,11 +109,10 @@ namespace WebSite.WebApp.Controllers
 					list.Add(Convert.ToInt32(k));
 				}
 			}
-			if (RoleInfoService.SetRoleActionInfo(roleId, list))
-				result = "ok";
-			else
-				result = "no";
-			return Content(result);
+			bool isOK = RoleInfoService.SetRoleActionInfo(roleId, list);
+			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			return Json(resultModel);
 		}
 	}
 }

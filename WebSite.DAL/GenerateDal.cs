@@ -9,7 +9,7 @@
 // <copyright file="WebSiteDbContext">
 //		Copyright(c)2018 rights reserved.
 //		开 发 者：黄翔宇@中国
-//		生成时间：2018-05-09 17:58
+//		生成时间：2018-05-18 16:33
 // </copyright>
 //------------------------------------------------------------------------------
 using WebSite.IDAL;
@@ -81,6 +81,13 @@ namespace WebSite.DAL
 	}
 
     /// <summary>
+    /// 实体类-数据表映射——KeyWordsRank
+    /// </summary>  
+	public partial class KeyWordsRankDal : BaseDal<KeyWordsRank>, IKeyWordsRankDal
+	{
+	}
+
+    /// <summary>
     /// 实体类-数据表映射——RoleInfo
     /// </summary>  
 	public partial class RoleInfoDal : BaseDal<RoleInfo>, IRoleInfoDal
@@ -98,6 +105,13 @@ namespace WebSite.DAL
     /// 实体类-数据表映射——RoleInfo_UserInfo
     /// </summary>  
 	public partial class RoleInfo_UserInfoDal : BaseDal<RoleInfo_UserInfo>, IRoleInfo_UserInfoDal
+	{
+	}
+
+    /// <summary>
+    /// 实体类-数据表映射——SearchDetails
+    /// </summary>  
+	public partial class SearchDetailsDal : BaseDal<SearchDetails>, ISearchDetailsDal
 	{
 	}
 

@@ -213,8 +213,10 @@
     $(window).resize(onResize);
     $.ligerui.win.removeTaskbar = function () { }; //不允许移除
     $.ligerui.win.createTaskbar(); //页面加载时创建任务栏
-    $.getJSON("/Home/Getmenus", function (data) {
-        links = data;
+    $.getJSON("/Home/GetMenus", function (data) {
+        if (data.StatusCode == 200) {
+            links = data.Data;
+        }
         linksInit();
         onResize();
     });

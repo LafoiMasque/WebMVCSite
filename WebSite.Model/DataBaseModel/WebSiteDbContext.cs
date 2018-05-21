@@ -21,9 +21,11 @@ namespace WebSite.Model.DataBaseModel
 		public virtual DbSet<JD_Commodity_003> JD_Commodity_003 { get; set; }
 		public virtual DbSet<JD_Commodity_004> JD_Commodity_004 { get; set; }
 		public virtual DbSet<JD_Commodity_005> JD_Commodity_005 { get; set; }
+		public virtual DbSet<KeyWordsRank> KeyWordsRank { get; set; }
 		public virtual DbSet<RoleInfo> RoleInfo { get; set; }
 		public virtual DbSet<RoleInfo_ActionInfo> RoleInfo_ActionInfo { get; set; }
 		public virtual DbSet<RoleInfo_UserInfo> RoleInfo_UserInfo { get; set; }
+		public virtual DbSet<SearchDetails> SearchDetails { get; set; }
 		public virtual DbSet<UserInfo> UserInfo { get; set; }
 		public virtual DbSet<UserInfo_ActionInfo> UserInfo_ActionInfo { get; set; }
 		public virtual DbSet<UserInfo_DepartmentInfo> UserInfo_DepartmentInfo { get; set; }

@@ -88,7 +88,7 @@
             var actionId = $(this).attr("ids");//获取权限编号
             var isPass=$(this).val();
             $.post("/UserInfo/SetUserAction", { "actionId": actionId, "userId": '@userInfo.Id', "isPass": isPass }, function (data) {
-                if (data == "ok") {
+                if (data.StatusCode == 200) {
                     $.messager.show({
                         title: '提示',
                         msg: '权限分配成功',
@@ -111,12 +111,11 @@
             var actionId = $(this).attr("ids");//获取权限编号
             var $control=$(this)
             $.post("/UserInfo/ClearUserAction", { "actionId": actionId, "userId": '@userInfo.Id' }, function (data) {
-                var serverData = data.split(':');
-                if (serverData[0] == "ok") {
+                if (data.StatusCode == 200) {
                     $control.parent().find(".selectActions").removeAttr("checked");
-                    showMsg(serverData[1]);
+                    showMsg(data.Message);
                 } else {
-                    showMsg(serverData[1]);
+                    showMsg(data.Message);
                 }
             });
         });

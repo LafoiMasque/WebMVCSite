@@ -9,7 +9,7 @@
 // <copyright file="WebSiteDbContext">
 //		Copyright(c)2018 rights reserved.
 //		开 发 者：黄翔宇@中国
-//		生成时间：2018-05-09 18:01
+//		生成时间：2018-05-18 17:55
 // </copyright>
 //------------------------------------------------------------------------------
 using System.Data.Entity;
@@ -21,7 +21,6 @@ namespace WebSite.IDAL
 	/// </summary>
 	public partial interface IDbSession
 	{
-        DbContext DbContext { get; }
         IActionInfoDal ActionInfoDal { get; }
         IActionInfo_DepartmentInfoDal ActionInfo_DepartmentInfoDal { get; }
         ICategoryDal CategoryDal { get; }
@@ -31,12 +30,13 @@ namespace WebSite.IDAL
         IJD_Commodity_003Dal JD_Commodity_003Dal { get; }
         IJD_Commodity_004Dal JD_Commodity_004Dal { get; }
         IJD_Commodity_005Dal JD_Commodity_005Dal { get; }
+        IKeyWordsRankDal KeyWordsRankDal { get; }
         IRoleInfoDal RoleInfoDal { get; }
         IRoleInfo_ActionInfoDal RoleInfo_ActionInfoDal { get; }
         IRoleInfo_UserInfoDal RoleInfo_UserInfoDal { get; }
+        ISearchDetailsDal SearchDetailsDal { get; }
         IUserInfoDal UserInfoDal { get; }
         IUserInfo_ActionInfoDal UserInfo_ActionInfoDal { get; }
         IUserInfo_DepartmentInfoDal UserInfo_DepartmentInfoDal { get; }
-      bool SaveChanged();
     }
 }

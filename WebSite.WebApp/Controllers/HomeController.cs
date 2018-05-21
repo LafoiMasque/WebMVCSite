@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebSite.Common.UtilityClass;
+using WebSite.Core;
 using WebSite.IBLL;
 using WebSite.Model.DataBaseModel;
+using WebSite.Model.DataModel;
 using WebSite.Model.EnumType;
 using WebSite.WebApp.CustomAttribute;
 
@@ -50,7 +52,7 @@ namespace WebSite.WebApp.Controllers
 		/// 6：把过滤好的菜单权限生成JSON返回。
 		/// </summary>
 		/// <returns></returns>
-		public ActionResult Getmenus()
+		public ActionResult GetMenus()
 		{
 			//1: 可以按照用户---角色---权限这条线找出登录用户的权限，放在一个集合中。
 			//获取登录用户的信息
@@ -87,7 +89,9 @@ namespace WebSite.WebApp.Controllers
 						   title = a.ActionName,
 						   url = a.Url
 					   };
-			return Json(temp, JsonRequestBehavior.AllowGet);
+
+			ResultModel<object> resultModel = new ResultModel<object>(temp);
+			return Json(resultModel, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

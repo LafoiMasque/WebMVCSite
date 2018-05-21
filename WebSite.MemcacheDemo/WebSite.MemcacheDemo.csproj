@@ -33,16 +33,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Commons">
-      <HintPath>..\Lib\Commons.dll</HintPath>
+      <HintPath>..\Lib\Memcached\Commons.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\Lib\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\Lib\Memcached\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\Lib\log4net.dll</HintPath>
+      <HintPath>..\Lib\Memcached\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Memcached.ClientLibrary">
-      <HintPath>..\Lib\Memcached.ClientLibrary.dll</HintPath>
+      <HintPath>..\Lib\Memcached\Memcached.ClientLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

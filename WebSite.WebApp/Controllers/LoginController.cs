@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using WebSite.Common.UtilityClass;
+using WebSite.Core;
 using WebSite.IBLL;
 using WebSite.Model.DataModel;
 
@@ -40,12 +39,13 @@ namespace WebSite.WebApp.Controllers
 		/// <returns></returns>
 		public ActionResult UserLogin()
 		{
-			ResultModel<string> resultModel = null;
+			ResultCodeEnum resultCodeEnum = ResultCodeEnum.Failure;
+			string message = string.Empty;
 			var sessionCode = Session["validateCode"];
 			string validateCode = sessionCode != null ? sessionCode.ToString() : string.Empty;
 			if (string.IsNullOrEmpty(validateCode))
 			{
-				resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Failure, "验证码错误"));
+				message = "验证码错误";
 			}
 			else
 			{
@@ -53,7 +53,7 @@ namespace WebSite.WebApp.Controllers
 				string txtCode = Request["vCode"];
 				if (!validateCode.Equals(txtCode, StringComparison.InvariantCultureIgnoreCase))
 				{
-					resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Failure, "验证码错误"));
+					message = "验证码错误";
 				}
 				else
 				{
@@ -70,14 +70,16 @@ namespace WebSite.WebApp.Controllers
 						MemcacheHelper.Set(sessionId, SerializeHelper.SerializeToString(userInfo), DateTime.Now.AddMinutes(20));
 						//将Memcache的key以Cookie的形式返回给浏览器。
 						Response.Cookies["sessionId"].Value = sessionId;
-						resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Success, "登录成功"));
+						resultCodeEnum = ResultCodeEnum.Success;
+						message = "登录成功";
 					}
 					else
 					{
-						resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Failure, "登录失败"));
+						message = "登录失败";
 					}
 				}
 			}
+			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum, message));
 			return Json(resultModel, JsonRequestBehavior.AllowGet);
 		}
 	}
