@@ -1,0 +1,9 @@
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\WebSite.RabbitMQProducer.exe.config
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\WebSite.RabbitMQProducer.exe
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\WebSite.RabbitMQProducer.pdb
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\RabbitMQ.Client.dll
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\RabbitMQ.Client.xml
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csprojResolveAssemblyReference.cache
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csproj.CoreCompileInputs.cache
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.exe
+E:\GitProject\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.pdb

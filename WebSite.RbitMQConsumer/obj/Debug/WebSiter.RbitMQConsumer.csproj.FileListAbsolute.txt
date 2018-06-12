@@ -1,0 +1,9 @@
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\bin\Debug\WebMVCSiter.RbitMQConsumer.exe.config
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\bin\Debug\WebMVCSiter.RbitMQConsumer.exe
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\bin\Debug\WebMVCSiter.RbitMQConsumer.pdb
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\bin\Debug\RabbitMQ.Client.dll
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\bin\Debug\RabbitMQ.Client.xml
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csprojResolveAssemblyReference.cache
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csproj.CoreCompileInputs.cache
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.exe
+E:\GitProject\WebMVCSite\WebMVCSiter.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.pdb
