@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2027
+VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.DALFactory", "WebSite.DALFactory\WebSite.DALFactory.csproj", "{3C1FB814-68FD-4A2E-877F-5E17E0E25BBD}"
 EndProject
@@ -32,6 +32,17 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.QuartzNet", "WebSite.QuartzNet\WebSite.QuartzNet.csproj", "{1BAF7BB2-B134-4FCD-ABF3-CCA182AFC7D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.SpringNetDemo", "WebSite.SpringNetDemo\WebSite.SpringNetDemo.csproj", "{A1DBC6C7-4579-4CF5-BF95-79594B9EEE3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{84D7CBF0-BED8-4264-AB95-55733BF49A41}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSite.MQDemo", "WebSite.MQDemo", "{AE71AFE2-330C-4F37-BA98-0108A86E0EE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.RabbitMQProducer", "WebSite.RabbitMQProducer\WebSite.RabbitMQProducer.csproj", "{026C585A-6FF7-46E5-B2B1-9266632D7CA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSiter.RbitMQConsumer", "WebMVCSiter.RbitMQConsumer\WebSiter.RbitMQConsumer.csproj", "{D3CCE50E-788A-46FC-AC58-98CA73F53D40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +106,14 @@ Global
 		{A1DBC6C7-4579-4CF5-BF95-79594B9EEE3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1DBC6C7-4579-4CF5-BF95-79594B9EEE3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1DBC6C7-4579-4CF5-BF95-79594B9EEE3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026C585A-6FF7-46E5-B2B1-9266632D7CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026C585A-6FF7-46E5-B2B1-9266632D7CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026C585A-6FF7-46E5-B2B1-9266632D7CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026C585A-6FF7-46E5-B2B1-9266632D7CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3CCE50E-788A-46FC-AC58-98CA73F53D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3CCE50E-788A-46FC-AC58-98CA73F53D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3CCE50E-788A-46FC-AC58-98CA73F53D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3CCE50E-788A-46FC-AC58-98CA73F53D40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +123,9 @@ Global
 		{55E61EB8-B72C-411E-A634-800E1D5FBC07} = {16345BAB-7DAE-40D8-A9B6-6B87D1296BAC}
 		{728181BC-E71D-4F44-9F14-84286E2103DD} = {16345BAB-7DAE-40D8-A9B6-6B87D1296BAC}
 		{A1DBC6C7-4579-4CF5-BF95-79594B9EEE3A} = {16345BAB-7DAE-40D8-A9B6-6B87D1296BAC}
+		{AE71AFE2-330C-4F37-BA98-0108A86E0EE5} = {16345BAB-7DAE-40D8-A9B6-6B87D1296BAC}
+		{026C585A-6FF7-46E5-B2B1-9266632D7CA4} = {AE71AFE2-330C-4F37-BA98-0108A86E0EE5}
+		{D3CCE50E-788A-46FC-AC58-98CA73F53D40} = {AE71AFE2-330C-4F37-BA98-0108A86E0EE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2296D4E-60B9-4562-AA8A-BCFC750405EB}

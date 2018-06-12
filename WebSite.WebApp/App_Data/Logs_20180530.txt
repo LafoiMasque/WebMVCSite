@@ -1,0 +1,28 @@
+
+----------------------header--------------------------
+2018-05-30 12:31:38,879 [8] ERROR Memcached.ClientLibrary.SockIOPool - Failed to get SockIO obj for: 10.0.0.137:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   在 Memcached.ClientLibrary.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   在 Memcached.ClientLibrary.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   在 Memcached.ClientLibrary.SockIOPool.CreateSocket(String host)
+2018-05-30 12:31:39,314 [8] ERROR Memcached.ClientLibrary.SockIOPool - Failed to create connection to: 10.0.0.137:11211 -- only 0 created
+2018-05-30 14:08:52,519 [62] ERROR Memcached.ClientLibrary.SockIOPool - Failed to get SockIO obj for: 10.0.0.137:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   在 Memcached.ClientLibrary.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   在 Memcached.ClientLibrary.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   在 Memcached.ClientLibrary.SockIOPool.CreateSocket(String host)
+2018-05-30 14:08:53,938 [59] ERROR Memcached.ClientLibrary.SockIOPool - Failed to get SockIO obj for: 10.0.0.137:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   在 Memcached.ClientLibrary.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   在 Memcached.ClientLibrary.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   在 Memcached.ClientLibrary.SockIOPool.CreateSocket(String host)
+2018-05-30 14:08:58,413 [17] ERROR Memcached.ClientLibrary.SockIOPool - Failed to get SockIO obj for: 10.0.0.137:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   在 Memcached.ClientLibrary.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   在 Memcached.ClientLibrary.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   在 Memcached.ClientLibrary.SockIOPool.CreateSocket(String host)
+2018-05-30 14:09:11,679 [16] ERROR Memcached.ClientLibrary.SockIOPool - Failed to get SockIO obj for: 10.0.0.137:11211 -- new socket is not connected
+System.IO.IOException: Could not connect for 1000 milliseconds
+   在 Memcached.ClientLibrary.SockIO.GetSocket(String host, Int32 port, Int32 timeout)
+   在 Memcached.ClientLibrary.SockIO..ctor(SockIOPool pool, String host, Int32 timeout, Int32 connectTimeout, Boolean noDelay)
+   在 Memcached.ClientLibrary.SockIOPool.CreateSocket(String host)

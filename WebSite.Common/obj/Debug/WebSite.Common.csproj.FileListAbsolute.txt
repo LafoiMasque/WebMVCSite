@@ -7,3 +7,11 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csproj.Cop
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.xml
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csprojResolveAssemblyReference.cache
+E:\GitProject\WebMVCSite\WebSite.Common\bin\Debug\WebSite.Common.dll
+E:\GitProject\WebMVCSite\WebSite.Common\bin\Debug\WebSite.Common.pdb
+E:\GitProject\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.dll
+E:\GitProject\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.xml
+E:\GitProject\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csprojResolveAssemblyReference.cache
+E:\GitProject\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csproj.CoreCompileInputs.cache
+E:\GitProject\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.dll
+E:\GitProject\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.pdb
