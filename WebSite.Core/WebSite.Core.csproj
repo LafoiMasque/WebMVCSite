@@ -45,6 +45,18 @@
     <Reference Include="PanGu.Lucene.Analyzer">
       <HintPath>..\Lib\LuceneNet\PanGu.Lucene.Analyzer.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.5.1.0\lib\net45\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.5.1.0\lib\net45\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Redis.5.1.0\lib\net45\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.5.1.0\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,12 +73,23 @@
     <Compile Include="Lucene.Net\LuceneTypeEnum.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redis\Init\RedisConfigInfo.cs" />
+    <Compile Include="Redis\Init\RedisManager.cs" />
+    <Compile Include="Redis\Service\RedisBase.cs" />
+    <Compile Include="Redis\Service\RedisHashService.cs" />
+    <Compile Include="Redis\Service\RedisListService.cs" />
+    <Compile Include="Redis\Service\RedisSetService.cs" />
+    <Compile Include="Redis\Service\RedisStringService.cs" />
+    <Compile Include="Redis\Service\RedisZSetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebSite.Common\WebSite.Common.csproj">
       <Project>{522d5ddd-b93a-4aa7-9b08-c79c34a0460a}</Project>
       <Name>WebSite.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

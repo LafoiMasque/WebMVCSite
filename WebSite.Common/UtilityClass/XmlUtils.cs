@@ -30,7 +30,7 @@ namespace WebSite.Common.UtilityClass
 		//	}
 		//}
 
-		#region 实例方法
+		#region 实例部分
 
 		private XElement m_rootXElement = null;
 
@@ -102,11 +102,23 @@ namespace WebSite.Common.UtilityClass
 		/// <returns>实例集合</returns>
 		public List<T> GetXmlElementsInstance<T>(string elementName) where T : class, new()
 		{
+			return GetXmlElementsInstance<T>(elementName, null);
+		}
+
+		/// <summary>
+		/// 获取xml文件中的元素指定类型的实例集合
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns>实例集合</returns>
+		public List<T> GetXmlElementsInstance<T>(string elementName, Predicate<XElement> match) where T : class, new()
+		{
 			List<T> ltTarget = null;
 			if (m_authorityFile)
 			{
 				IEnumerable<XElement> elements = m_rootXElement.Elements(elementName);
-				ltTarget = GetXmlElementsInstanceList<T>(elements);
+				ltTarget = GetXmlElementsInstanceList<T>(elements, match);
 			}
 			return ltTarget;
 		}
@@ -278,7 +290,7 @@ namespace WebSite.Common.UtilityClass
 
 		#endregion
 
-		#region 静态方法
+		#region 静态部分
 
 		#region 查询
 
@@ -310,7 +322,19 @@ namespace WebSite.Common.UtilityClass
 		/// <returns>实例集合</returns>
 		public static List<T> GetXmlElements<T>(string filePath) where T : class, new()
 		{
-			return GetXmlElements<T>(filePath, typeof(T).Name);
+			return GetXmlElements<T>(filePath, null);
+		}
+
+		/// <summary>
+		/// 获取xml文件中的元素指定类型的实例集合
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns>实例集合</returns>
+		public static List<T> GetXmlElements<T>(string filePath, Predicate<XElement> match) where T : class, new()
+		{
+			return GetXmlElements<T>(filePath, typeof(T).Name, match);
 		}
 
 		/// <summary>
@@ -319,8 +343,9 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="elementName">元素名</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <returns>实例集合</returns>
-		public static List<T> GetXmlElements<T>(string filePath, string elementName) where T : class, new()
+		public static List<T> GetXmlElements<T>(string filePath, string elementName, Predicate<XElement> match) where T : class, new()
 		{
 			List<T> ltTarget = null;
 			try
@@ -329,7 +354,7 @@ namespace WebSite.Common.UtilityClass
 				{
 					XElement xe = XElement.Load(filePath);
 					IEnumerable<XElement> elements = xe.Elements(elementName);
-					ltTarget = GetXmlElementsInstanceList<T>(elements);
+					ltTarget = GetXmlElementsInstanceList<T>(elements, match);
 				}
 			}
 			catch
@@ -543,13 +568,16 @@ namespace WebSite.Common.UtilityClass
 
 		#endregion
 
+		#region 公用方法
+
 		/// <summary>
 		/// 获取元素集合中指定类型的实例集合
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="elements">元素集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <returns>实例集合</returns>
-		private static List<T> GetXmlElementsInstanceList<T>(IEnumerable<XElement> elements) where T : class, new()
+		private static List<T> GetXmlElementsInstanceList<T>(IEnumerable<XElement> elements, Predicate<XElement> match) where T : class, new()
 		{
 			List<T> ltTarget = null;
 			if (elements != null && elements.Count() > 0)
@@ -557,43 +585,46 @@ namespace WebSite.Common.UtilityClass
 				ltTarget = new List<T>();
 				foreach (var ele in elements)
 				{
-					T target = Activator.CreateInstance<T>();
-					PropertyInfo[] propertys = target.GetType().GetProperties();
-					foreach (PropertyInfo property in propertys)
+					if (match == null || match(ele))
 					{
-						string value = string.Empty;
-						XAttribute tempAttribute = ele.Attribute(property.Name);
-						if (tempAttribute != null)
+						T target = Activator.CreateInstance<T>();
+						PropertyInfo[] propertys = target.GetType().GetProperties();
+						foreach (PropertyInfo property in propertys)
 						{
-							value = tempAttribute.Value;
-						}
-						else
-						{
-							XElement xElement = ele.Element(property.Name);
-							if (xElement != null)
+							string value = string.Empty;
+							XAttribute tempAttribute = ele.Attribute(property.Name);
+							if (tempAttribute != null)
 							{
-								value = xElement.Value;
-							}
-						}
-						if (!string.IsNullOrEmpty(value))
-						{
-							if (!property.PropertyType.IsGenericType)
-							{
-								//非泛型
-								property.SetValue(target, Convert.ChangeType(value, property.PropertyType));
+								value = tempAttribute.Value;
 							}
 							else
 							{
-								//泛型Nullable<>
-								Type genericTypeDefinition = property.PropertyType.GetGenericTypeDefinition();
-								if (genericTypeDefinition == typeof(Nullable<>))
+								XElement xElement = ele.Element(property.Name);
+								if (xElement != null)
 								{
-									property.SetValue(target, Convert.ChangeType(value, Nullable.GetUnderlyingType(property.PropertyType)));
+									value = xElement.Value;
+								}
+							}
+							if (!string.IsNullOrEmpty(value))
+							{
+								if (!property.PropertyType.IsGenericType)
+								{
+									//非泛型
+									property.SetValue(target, Convert.ChangeType(value, property.PropertyType));
+								}
+								else
+								{
+									//泛型Nullable<>
+									Type genericTypeDefinition = property.PropertyType.GetGenericTypeDefinition();
+									if (genericTypeDefinition == typeof(Nullable<>))
+									{
+										property.SetValue(target, Convert.ChangeType(value, Nullable.GetUnderlyingType(property.PropertyType)));
+									}
 								}
 							}
 						}
+						ltTarget.Add(target);
 					}
-					ltTarget.Add(target);
 				}
 			}
 			return ltTarget;
@@ -684,6 +715,8 @@ namespace WebSite.Common.UtilityClass
 			}
 			return isOK;
 		}
+
+		#endregion
 
 		#endregion
 

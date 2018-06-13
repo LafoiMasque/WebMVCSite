@@ -4,10 +4,8 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\obj\Debug\WebSite.IBLL.csprojResolveA
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\obj\Debug\WebSite.IBLL.csproj.CoreCompileInputs.cache
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\obj\Debug\WebSite.IBLL.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\obj\Debug\WebSite.IBLL.pdb
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\WebSite.IDAL.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\WebSite.Model.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\EntityFramework.dll
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\WebSite.IDAL.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\WebSite.Model.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\WebSite.Model.dll.config
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\EntityFramework.xml
@@ -15,3 +13,5 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\zh-Hans\EntityFramework.res
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\obj\Debug\WebSite.IBLL.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\Newtonsoft.Json.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\Newtonsoft.Json.xml
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\WebSite.IDAL.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.IBLL\bin\Debug\WebSite.IDAL.pdb

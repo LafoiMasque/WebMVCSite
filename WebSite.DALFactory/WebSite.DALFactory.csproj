@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractFactory.cs" />
+    <Compile Include="DbGenericSession.cs" />
     <Compile Include="DbSession.cs" />
     <Compile Include="DbSessionFactory.cs" />
     <Compile Include="GenerateDbSession.cs">

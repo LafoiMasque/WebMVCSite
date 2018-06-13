@@ -49,21 +49,31 @@ namespace WebSite.WebApp.Controllers
 			IndexReader reader = IndexReader.Open(directory, true);
 			IndexSearcher searcher = new IndexSearcher(reader);
 			//搜索条件
-			PhraseQuery query = new PhraseQuery();
+			PhraseQuery queryBody = new PhraseQuery();
+			////多部分查询
+			//PhraseQuery queryTitle = new PhraseQuery();
 			//先用空格，让用户去分词，空格分隔的就是词“计算机   专业”
 			foreach (string word in list)
 			{
-				query.Add(new Term("Price", word));
+				queryBody.Add(new Term("Price", word));
+				//queryTitle.Add(new Term("Title", word));
 			}
-			//query.Add(new Term("body","语言"));--可以添加查询条件，两者是add关系.顺序没有关系.
-			// query.Add(new Term("body", "大学生"));
-			// query.Add(new Term("body", kw));//body中含有kw的文章
 			//多个查询条件的词之间的最大距离.在文章中相隔太远 也就无意义.（例如 “大学生”这个查询条件和"简历"这个查询条件之间如果间隔的词太多也就没有意义了。）
-			query.SetSlop(100);
+			queryBody.SetSlop(100);
+			//queryTitle.SetSlop(100);
+
+			#region 多部分查询
+
+			//BooleanQuery query = new BooleanQuery();
+			//query.Add(queryTitle, BooleanClause.Occur.SHOULD);
+			//query.Add(queryBody, BooleanClause.Occur.SHOULD);
+
+			#endregion
+
 			//TopScoreDocCollector是盛放查询结果的容器
 			TopScoreDocCollector collector = TopScoreDocCollector.create(1000, true);
 			//根据query查询条件进行查询，查询结果放入collector容器
-			searcher.Search(query, null, collector);
+			searcher.Search(queryBody, null, collector);
 			//得到所有查询结果中的文档,GetTotalHits():表示总条数   TopDocs(300, 20);//表示得到300（从300开始），到320（结束）的文档内容.
 			ScoreDoc[] docs = collector.TopDocs(0, collector.GetTotalHits()).scoreDocs;
 			//可以用来实现分页功能
@@ -89,5 +99,12 @@ namespace WebSite.WebApp.Controllers
 			return viewModelList;
 		}
 
+		public ActionResult AutoComplete()
+		{
+			//Thread.Sleep(5000);
+			string term = Request["term"];
+			List<string> list = KeyWordsRankService.GetSearchMsg(term);
+			return Json(list.ToArray(), JsonRequestBehavior.AllowGet);
+		}
 	}
 }

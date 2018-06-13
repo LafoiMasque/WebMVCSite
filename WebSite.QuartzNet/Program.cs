@@ -20,7 +20,7 @@ namespace WebSite.QuartzNet
 			//5秒后开始第一次运行
 			DateTime ts = TriggerUtils.GetNextGivenSecondDate(null, 5);
 			//每隔1小时执行一次
-			TimeSpan interval = TimeSpan.FromSeconds(60);
+			TimeSpan interval = TimeSpan.FromMinutes(60);
 			//每若干小时运行一次，小时间隔由appsettings中的IndexIntervalHour参数指定
 			Trigger trigger = new SimpleTrigger("trigger1", "group1", "job1", "group1", ts, null, SimpleTrigger.RepeatIndefinitely, interval);
 

@@ -6,4 +6,3 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.xml
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csprojResolveAssemblyReference.cache

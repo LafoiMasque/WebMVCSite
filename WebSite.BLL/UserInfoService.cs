@@ -103,4 +103,12 @@ namespace WebSite.BLL
 		}
 
 	}
+
+	//public partial class UserInfoGenericService : BaseGenericService<IDAL.IUserInfoDal, UserInfo>//, IUserInfoService
+	//{
+	//	public UserInfoGenericService()
+	//	{
+	//		//this.CurrentDal.
+	//	}
+	//}
 }

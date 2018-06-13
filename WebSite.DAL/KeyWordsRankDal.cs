@@ -17,7 +17,11 @@ namespace WebSite.DAL
 		/// <returns></returns>
 		public bool InsertKeyWordsRank()
 		{
-			string sql = "insert into KeyWordsRank(Id,KeyWords,SearchCount) select newid(),KeyWords,count(*)  from SearchDetails where DateDiff(day,SearchDetails.SearchTime,getdate())<=7 group by SearchDetails.KeyWords";
+			string sql = @"insert into KeyWordsRank(Id,KeyWords,SearchCount) 
+select newid(),KeyWords,count(*) 
+from SearchDetails 
+where DateDiff(day,SearchDetails.SearchTime,getdate())<=7 
+group by SearchDetails.KeyWords";
 			return ExecuteSql(sql);
 		}
 
@@ -28,7 +32,7 @@ namespace WebSite.DAL
 		public bool DeleteAllKeyWordsRank()
 		{
 			string sql = "truncate table KeyWordsRank";
-			return ExecuteSql(sql) ;
+			return ExecuteSql(sql);
 		}
 
 		public List<string> GetSearchMsg(string term)

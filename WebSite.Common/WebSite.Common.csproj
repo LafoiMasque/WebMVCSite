@@ -35,6 +35,7 @@
       <HintPath>..\Lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -81,7 +82,10 @@
     <Compile Include="UtilityClass\ComputerHelper.cs" />
     <Compile Include="UtilityClass\DataRelated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UtilityClass\ExpressionClone.cs" />
+    <Compile Include="UtilityClass\ReflectionClone.cs" />
     <Compile Include="UtilityClass\SerializeHelper.cs" />
+    <Compile Include="UtilityClass\SqlHelper.cs" />
     <Compile Include="UtilityClass\ValidateCode.cs" />
     <Compile Include="UtilityClass\XmlUtils.cs" />
   </ItemGroup>

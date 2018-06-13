@@ -55,6 +55,7 @@
       <DependentUpon>GenerateIDbSession.tt</DependentUpon>
     </Compile>
     <Compile Include="IBaseDal.cs" />
+    <Compile Include="IDbGenericSession.cs" />
     <Compile Include="IDbSession.cs" />
     <Compile Include="IKeyWordsRankDal.cs" />
     <Compile Include="IUserInfoDal.cs" />

@@ -98,9 +98,14 @@ namespace WebSite.DAL
 		/// <returns></returns>
 		public M ExecuteQuery<M>(string sql, params object[] pars)
 		{
-			Type type = typeof(M);
-			var result = m_dBContext.Database.SqlQuery(type, sql, pars);
-			return default(M);
+			M result = default(M);
+			var dbRawSqlQuery = m_dBContext.Database.SqlQuery(typeof(M), sql, pars);
+			foreach (var item in dbRawSqlQuery)
+			{
+				result = (M)item;
+				break;
+			}
+			return result;
 		}
 
 		/// <summary>
