@@ -72,7 +72,7 @@
       <Name>WebSite.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebSite.IBLL\WebSite.IBLL.csproj">
-      <Project>{946197c4-d7f9-438f-8963-6df403a3925e}</Project>
+      <Project>{946197C4-D7F9-438F-8963-6DF403A3925E}</Project>
       <Name>WebSite.IBLL</Name>
     </ProjectReference>
   </ItemGroup>

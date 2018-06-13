@@ -957,7 +957,7 @@
       <Name>WebSite.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebSite.Common\WebSite.Common.csproj">
-      <Project>{522d5ddd-b93a-4aa7-9b08-c79c34a0460a}</Project>
+      <Project>{522D5DDD-B93A-4AA7-9B08-C79C34A0460A}</Project>
       <Name>WebSite.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebSite.Core\WebSite.Core.csproj">

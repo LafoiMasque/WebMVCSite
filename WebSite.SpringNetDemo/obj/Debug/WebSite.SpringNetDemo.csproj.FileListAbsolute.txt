@@ -21,4 +21,3 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringNetDemo\obj\Debug\WebSite.SpringNetD
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringNetDemo\obj\Debug\WebSite.SpringNetDemo.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringNetDemo\obj\Debug\WebSite.SpringNetDemo.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringNetDemo\obj\Debug\WebSite.SpringNetDemo.pdb
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.SpringNetDemo\obj\Debug\WebSite.SpringNetDemo.csprojResolveAssemblyReference.cache

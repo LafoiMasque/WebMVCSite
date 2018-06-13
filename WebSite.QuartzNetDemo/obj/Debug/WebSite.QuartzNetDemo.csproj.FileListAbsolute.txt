@@ -7,4 +7,3 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetD
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.pdb
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.QuartzNetDemo\obj\Debug\WebSite.QuartzNetDemo.csprojResolveAssemblyReference.cache

@@ -83,13 +83,13 @@
     <Compile Include="Redis\Service\RedisZSetService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebSite.Common\WebSite.Common.csproj">
-      <Project>{522d5ddd-b93a-4aa7-9b08-c79c34a0460a}</Project>
-      <Name>WebSite.Common</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\WebSite.Common\WebSite.Common.csproj">
+      <Project>{522D5DDD-B93A-4AA7-9B08-C79C34A0460A}</Project>
+      <Name>WebSite.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
