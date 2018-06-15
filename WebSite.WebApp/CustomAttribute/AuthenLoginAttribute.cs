@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Filters;
 using WebSite.Common.UtilityClass;
 using WebSite.Core;
-using WebSite.IBLL;
+using WebSite.IBLL.SingletonPattern;
 using WebSite.Model.DataBaseModel;
 
 namespace WebSite.WebApp.CustomAttribute

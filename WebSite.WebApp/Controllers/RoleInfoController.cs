@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using WebSite.IBLL.SingletonPattern;
 using WebSite.Model.DataBaseModel;
-using WebSite.IBLL;
+using WebSite.Model.DataModel;
 using WebSite.Model.EnumType;
 using WebSite.WebApp.CustomAttribute;
-using WebSite.Model.DataModel;
 
 namespace WebSite.WebApp.Controllers
 {

@@ -40,17 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseGenericService.cs" />
-    <Compile Include="BaseService.cs" />
-    <Compile Include="GenerateService.cs">
+    <Compile Include="MashupPattern\UserInfoRoleInfoService.cs" />
+    <Compile Include="SingletonPattern\BaseGenericService.cs" />
+    <Compile Include="SingletonPattern\BaseService.cs" />
+    <Compile Include="SingletonPattern\GenerateService.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateService.tt</DependentUpon>
     </Compile>
-    <Compile Include="KeyWordsRankService.cs" />
+    <Compile Include="SingletonPattern\KeyWordsRankService.cs" />
+    <Compile Include="MashupPattern\BaseMashupService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleInfoService.cs" />
-    <Compile Include="UserInfoService.cs" />
+    <Compile Include="SingletonPattern\RoleInfoService.cs" />
+    <Compile Include="SingletonPattern\UserInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebSite.DALFactory\WebSite.DALFactory.csproj">
@@ -71,7 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GenerateService.tt">
+    <Content Include="SingletonPattern\GenerateService.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateService.cs</LastGenOutput>
     </Content>
@@ -79,5 +81,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -45,15 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractFactory.cs" />
-    <Compile Include="DbGenericSession.cs" />
-    <Compile Include="DbSession.cs" />
-    <Compile Include="DbSessionFactory.cs" />
-    <Compile Include="GenerateDbSession.cs">
+    <Compile Include="MashupPattern\DbMashupSession.cs" />
+    <Compile Include="MashupPattern\DbMashupSessionFactory.cs" />
+    <Compile Include="SingletonPattern\DbGenericSession.cs" />
+    <Compile Include="SingletonPattern\DbSession.cs" />
+    <Compile Include="SingletonPattern\DbSessionFactory.cs" />
+    <Compile Include="SingletonPattern\GenerateDbSession.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateDbSession.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlModel\EntityModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebSite.Common\WebSite.Common.csproj">
@@ -68,13 +71,9 @@
       <Project>{78cec902-ef94-4134-889d-baa1eb5e9ece}</Project>
       <Name>WebSite.IDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebSite.Model\WebSite.Model.csproj">
-      <Project>{a8b2ef8d-b925-411f-a9a4-9918f9d693c5}</Project>
-      <Name>WebSite.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GenerateDbSession.tt">
+    <Content Include="SingletonPattern\GenerateDbSession.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateDbSession.cs</LastGenOutput>
     </Content>
@@ -82,5 +81,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

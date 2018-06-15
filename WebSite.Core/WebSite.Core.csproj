@@ -81,6 +81,7 @@
     <Compile Include="Redis\Service\RedisSetService.cs" />
     <Compile Include="Redis\Service\RedisStringService.cs" />
     <Compile Include="Redis\Service\RedisZSetService.cs" />
+    <Compile Include="SignatureSecurity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

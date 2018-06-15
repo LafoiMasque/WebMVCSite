@@ -1,16 +1,13 @@
-﻿using Lucene.Net.Analysis.PanGu;
-using Lucene.Net.Documents;
+﻿using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web.Mvc;
-using WebSite.Common.UtilityClass;
 using WebSite.Core.Lucene.Net;
-using WebSite.IBLL;
+using WebSite.IBLL.SingletonPattern;
 using WebSite.Model.DataBaseModel;
 using WebSite.WebApp.Models;
 

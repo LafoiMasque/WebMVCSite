@@ -1,12 +1,7 @@
 ﻿using Quartz;
 using Spring.Context;
 using Spring.Context.Support;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebSite.IBLL;
+using WebSite.IBLL.SingletonPattern;
 
 namespace WebSite.QuartzNet
 {
@@ -15,12 +10,12 @@ namespace WebSite.QuartzNet
 	/// </summary>
 	public class IndexJob : IJob
 	{
-		IKeyWordsRankService bll = null;
+		public IKeyWordsRankService KeyWordsRankService { get; set; }
 
 		public IndexJob()
 		{
 			IApplicationContext ctx = ContextRegistry.GetContext();
-			bll = (IKeyWordsRankService)ctx.GetObject("KeyWordsRankService");
+			KeyWordsRankService = (IKeyWordsRankService)ctx.GetObject("KeyWordsRankService");
 		}
 
 		/// <summary>
@@ -29,8 +24,8 @@ namespace WebSite.QuartzNet
 		/// <param name="context"></param>
 		public void Execute(JobExecutionContext context)
 		{
-			bll.DeleteAllKeyWordsRank();
-			bll.InsertKeyWordsRank();
+			KeyWordsRankService.DeleteAllKeyWordsRank();
+			KeyWordsRankService.InsertKeyWordsRank();
 		}
 	}
 }

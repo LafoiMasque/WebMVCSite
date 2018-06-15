@@ -40,15 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenerateIService.cs">
+    <Compile Include="MashupPattern\IBaseMashupService.cs" />
+    <Compile Include="MashupPattern\IUserInfoRoleInfoService.cs" />
+    <Compile Include="SingletonPattern\GenerateIService.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateIService.tt</DependentUpon>
     </Compile>
-    <Compile Include="IBaseService.cs" />
-    <Compile Include="IKeyWordsRankService.cs" />
-    <Compile Include="IRoleInfoService.cs" />
-    <Compile Include="IUserInfoService.cs" />
+    <Compile Include="SingletonPattern\IBaseService.cs" />
+    <Compile Include="SingletonPattern\IKeyWordsRankService.cs" />
+    <Compile Include="SingletonPattern\IRoleInfoService.cs" />
+    <Compile Include="SingletonPattern\IUserInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +64,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GenerateIService.tt">
+    <Content Include="SingletonPattern\GenerateIService.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateIService.cs</LastGenOutput>
     </Content>
@@ -70,5 +72,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

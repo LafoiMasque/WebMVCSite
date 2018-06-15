@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using WebSite.Common.UtilityClass;
-using WebSite.Model.DataModel;
+using WebSite.DALFactory.XmlModel;
 
 namespace WebSite.DALFactory
 {

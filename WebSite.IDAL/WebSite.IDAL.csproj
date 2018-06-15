@@ -44,21 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenerateIDal.cs">
+    <Compile Include="MashupPattern\IBaseMashupDal.cs" />
+    <Compile Include="MashupPattern\IUserInfoRoleInfoDal.cs" />
+    <Compile Include="SingletonPattern\GenerateIDal.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateIDal.tt</DependentUpon>
     </Compile>
-    <Compile Include="GenerateIDbSession.cs">
+    <Compile Include="SingletonPattern\GenerateIDbSession.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateIDbSession.tt</DependentUpon>
     </Compile>
-    <Compile Include="IBaseDal.cs" />
-    <Compile Include="IDbGenericSession.cs" />
-    <Compile Include="IDbSession.cs" />
-    <Compile Include="IKeyWordsRankDal.cs" />
-    <Compile Include="IUserInfoDal.cs" />
+    <Compile Include="SingletonPattern\IBaseDal.cs" />
+    <Compile Include="SingletonPattern\IDbGenericSession.cs" />
+    <Compile Include="SingletonPattern\IDbSession.cs" />
+    <Compile Include="SingletonPattern\IKeyWordsRankDal.cs" />
+    <Compile Include="SingletonPattern\IUserInfoDal.cs" />
+    <Compile Include="MashupPattern\IDbMashupSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,11 +71,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GenerateIDal.tt">
+    <Content Include="SingletonPattern\GenerateIDal.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateIDal.cs</LastGenOutput>
     </Content>
-    <Content Include="GenerateIDbSession.tt">
+    <Content Include="SingletonPattern\GenerateIDbSession.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateIDbSession.cs</LastGenOutput>
     </Content>
@@ -80,5 +83,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

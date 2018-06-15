@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using WebSite.Common.UtilityClass;
 using WebSite.Core;
-using WebSite.IBLL;
+using WebSite.IBLL.SingletonPattern;
 using WebSite.Model.DataModel;
 
 namespace WebSite.WebApp.Controllers

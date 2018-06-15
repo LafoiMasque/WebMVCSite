@@ -43,21 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDal.cs" />
+    <Compile Include="MashupPattern\UserInfoRoleInfoDal.cs" />
+    <Compile Include="SingletonPattern\BaseDal.cs" />
     <Compile Include="DbContextFactory.cs" />
-    <Compile Include="GenerateDal.cs">
+    <Compile Include="SingletonPattern\GenerateDal.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateDal.tt</DependentUpon>
     </Compile>
-    <Compile Include="GenerateXmlDal.cs">
+    <Compile Include="SingletonPattern\GenerateXmlDal.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateXmlDal.tt</DependentUpon>
     </Compile>
-    <Compile Include="KeyWordsRankDal.cs" />
+    <Compile Include="SingletonPattern\KeyWordsRankDal.cs" />
+    <Compile Include="MashupPattern\BaseMashupDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserInfoDal.cs" />
+    <Compile Include="SingletonPattern\UserInfoDal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebSite.IDAL\WebSite.IDAL.csproj">
@@ -70,11 +72,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GenerateDal.tt">
+    <Content Include="SingletonPattern\GenerateDal.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateDal.cs</LastGenOutput>
     </Content>
-    <Content Include="GenerateXmlDal.tt">
+    <Content Include="SingletonPattern\GenerateXmlDal.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GenerateXmlDal.cs</LastGenOutput>
     </Content>
@@ -82,5 +84,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
