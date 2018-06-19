@@ -1,11 +1,12 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 
 namespace WebSite.IDAL.SingletonPattern
 {
 	/// <summary>
 	/// 业务层调用的是数据会话层的接口。
 	/// </summary>
-	public partial interface IDbSession
+	public partial interface IDbSession : IDisposable
 	{
 		DbContext DbContext { get; }
 		//IUserInfoDal UserInfoDal { get; set; }

@@ -47,7 +47,8 @@
     <Compile Include="AbstractFactory.cs" />
     <Compile Include="MashupPattern\DbMashupSession.cs" />
     <Compile Include="MashupPattern\DbMashupSessionFactory.cs" />
-    <Compile Include="SingletonPattern\DbGenericSession.cs" />
+    <Compile Include="SingletonGenericPattern\DbGenericSession.cs" />
+    <Compile Include="SingletonGenericPattern\DbGenericSessionFactory.cs" />
     <Compile Include="SingletonPattern\DbSession.cs" />
     <Compile Include="SingletonPattern\DbSessionFactory.cs" />
     <Compile Include="SingletonPattern\GenerateDbSession.cs">

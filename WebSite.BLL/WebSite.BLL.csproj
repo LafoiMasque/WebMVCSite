@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MashupPattern\UserInfoRoleInfoService.cs" />
-    <Compile Include="SingletonPattern\BaseGenericService.cs" />
+    <Compile Include="SingletonGenericPattern\BaseGenericService.cs" />
+    <Compile Include="SingletonGenericPattern\UserInfoGenericService.cs" />
     <Compile Include="SingletonPattern\BaseService.cs" />
     <Compile Include="SingletonPattern\GenerateService.cs">
       <AutoGen>True</AutoGen>

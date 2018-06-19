@@ -41,5 +41,9 @@ namespace WebSite.DALFactory.SingletonPattern
 		//	return DbContext.Database.ExecuteSqlCommand(sql, pars);
 		//}
 
+		public void Dispose()
+		{
+			DbContext.Dispose();
+		}
 	}
 }

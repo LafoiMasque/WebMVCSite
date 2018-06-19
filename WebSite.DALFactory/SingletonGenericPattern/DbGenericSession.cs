@@ -1,8 +1,9 @@
 ﻿using System.Data.Entity;
 using WebSite.DAL;
+using WebSite.IDAL.SingletonGenericPattern;
 using WebSite.IDAL.SingletonPattern;
 
-namespace WebSite.DALFactory.SingletonPattern
+namespace WebSite.DALFactory.SingletonGenericPattern
 {
 	public class DbGenericSession<T, M> : IDbGenericSession<T, M> where T : class, IBaseDal<M> where M : class, new()
 	{
@@ -31,5 +32,9 @@ namespace WebSite.DALFactory.SingletonPattern
 			return DbContext.SaveChanges() > 0;
 		}
 
+		public void Dispose()
+		{
+			DbContext.Dispose();
+		}
 	}
 }

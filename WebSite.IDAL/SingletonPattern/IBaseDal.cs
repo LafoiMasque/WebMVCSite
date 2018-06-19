@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -62,7 +63,7 @@ namespace WebSite.IDAL.SingletonPattern
 		/// <param name="sql"></param>
 		/// <param name="pars"></param>
 		/// <returns></returns>
-		M ExecuteQuery<M>(string sql, params object[] pars);
+		M ExecuteQuery<M>(string sql, params SqlParameter[] pars);
 
 		/// <summary>
 		/// 执行sql语句查询，返回给定类型的元素集合
@@ -70,6 +71,6 @@ namespace WebSite.IDAL.SingletonPattern
 		/// <param name="sql"></param>
 		/// <param name="pars"></param>
 		/// <returns></returns>
-		List<M> ExecuteQueryList<M>(string sql, params object[] pars);
+		IQueryable<M> ExecuteQueryList<M>(string sql, params SqlParameter[] pars);
 	}
 }

@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace WebSite.IBLL.MashupPattern
 {
-	public interface IBaseMashupService
+	public interface IBaseMashupService : IDisposable
 	{
 		IQueryable<T> LoadEntities<T>(Expression<Func<T, bool>> whereLambda) where T : class, new();
 

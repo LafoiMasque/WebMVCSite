@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace WebSite.IBLL.SingletonPattern
 {
-	public interface IBaseService<T> where T : class, new()
+	public interface IBaseService<T> : IDisposable where T : class, new()
 	{
 		//IDbSession CurrentDbSession { get; }
 

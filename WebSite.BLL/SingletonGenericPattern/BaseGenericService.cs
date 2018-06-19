@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using WebSite.DALFactory.SingletonPattern;
-using WebSite.IBLL.SingletonPattern;
+using WebSite.DALFactory.SingletonGenericPattern;
+using WebSite.IDAL.SingletonGenericPattern;
 using WebSite.IDAL.SingletonPattern;
 
-namespace WebSite.BLL.SingletonPattern
+namespace WebSite.BLL.SingletonGenericPattern
 {
-	public abstract class BaseGenericService<T, M> : IBaseService<M> where T : class, IBaseDal<M> where M : class, new()
+	public abstract class BaseGenericService<T, M> where T : class, IBaseDal<M> where M : class, new()
 	{
 		protected IDbGenericSession<T, M> CurrentDbSession
 		{
-			get { return DbSessionFactory.CreateDbGenericSession<T, M>(); }
+			get { return DbGenericSessionFactory.CreateDbGenericSession<T, M>(); }
 		}
 
 		protected T CurrentDal { get { return CurrentDbSession.CreateInstanceDal; } }
@@ -57,6 +57,11 @@ namespace WebSite.BLL.SingletonPattern
 		{
 			CurrentDal.EditEntity(entity);
 			return CurrentDbSession.SaveChanged();
+		}
+
+		public void Dispose()
+		{
+			CurrentDbSession.Dispose();
 		}
 	}
 }

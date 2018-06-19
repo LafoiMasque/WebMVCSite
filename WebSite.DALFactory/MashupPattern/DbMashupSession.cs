@@ -31,5 +31,9 @@ namespace WebSite.DALFactory.MashupPattern
 			return DbContext.SaveChanges() > 0;
 		}
 
+		public void Dispose()
+		{
+			DbContext.Dispose();
+		}
 	}
 }

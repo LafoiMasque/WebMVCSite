@@ -26,7 +26,7 @@ namespace WebSite.LuceneNetDemo
 				switch (consoleKeyInfo.Key)
 				{
 					case ConsoleKey.NumPad1:
-						 analyzer = new StandardAnalyzer();
+						 analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_20);
 						 tokenStream = analyzer.TokenStream("", new StringReader("北京，Hi欢迎你们大家"));
 						while ((token = tokenStream.Next()) != null)
 						{

@@ -68,5 +68,9 @@ namespace WebSite.BLL.SingletonPattern
 			return CurrentDbSession.SaveChanged();
 		}
 
+		public void Dispose()
+		{
+			CurrentDbSession.Dispose();
+		}
 	}
 }

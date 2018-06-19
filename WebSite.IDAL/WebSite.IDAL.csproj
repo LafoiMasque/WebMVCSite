@@ -57,7 +57,7 @@
       <DependentUpon>GenerateIDbSession.tt</DependentUpon>
     </Compile>
     <Compile Include="SingletonPattern\IBaseDal.cs" />
-    <Compile Include="SingletonPattern\IDbGenericSession.cs" />
+    <Compile Include="SingletonGenericPattern\IDbGenericSession.cs" />
     <Compile Include="SingletonPattern\IDbSession.cs" />
     <Compile Include="SingletonPattern\IKeyWordsRankDal.cs" />
     <Compile Include="SingletonPattern\IUserInfoDal.cs" />

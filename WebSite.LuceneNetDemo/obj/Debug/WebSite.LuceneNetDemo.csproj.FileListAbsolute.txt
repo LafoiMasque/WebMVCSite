@@ -15,3 +15,4 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetD
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.csprojResolveAssemblyReference.cache

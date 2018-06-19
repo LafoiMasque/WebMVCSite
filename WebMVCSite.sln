@@ -29,11 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.QuartzNet", "WebSit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.SpringNetDemo", "WebSite.SpringNetDemo\WebSite.SpringNetDemo.csproj", "{A1DBC6C7-4579-4CF5-BF95-79594B9EEE3A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{84D7CBF0-BED8-4264-AB95-55733BF49A41}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSite.MQDemo", "WebSite.MQDemo", "{AE71AFE2-330C-4F37-BA98-0108A86E0EE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite.RabbitMQProducer", "WebSite.RabbitMQProducer\WebSite.RabbitMQProducer.csproj", "{026C585A-6FF7-46E5-B2B1-9266632D7CA4}"

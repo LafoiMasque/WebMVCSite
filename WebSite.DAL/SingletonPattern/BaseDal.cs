@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -96,10 +97,10 @@ namespace WebSite.DAL.SingletonPattern
 		/// <param name="sql"></param>
 		/// <param name="pars"></param>
 		/// <returns></returns>
-		public M ExecuteQuery<M>(string sql, params object[] pars)
+		public M ExecuteQuery<M>(string sql, params SqlParameter[] pars)
 		{
 			M result = default(M);
-			var dbRawSqlQuery = m_dBContext.Database.SqlQuery(typeof(M), sql, pars);
+			var dbRawSqlQuery = m_dBContext.Database.SqlQuery(typeof(M), sql, pars).AsQueryable();
 			foreach (var item in dbRawSqlQuery)
 			{
 				result = (M)item;
@@ -114,9 +115,9 @@ namespace WebSite.DAL.SingletonPattern
 		/// <param name="sql"></param>
 		/// <param name="pars"></param>
 		/// <returns></returns>
-		public List<M> ExecuteQueryList<M>(string sql, params object[] pars)
+		public IQueryable<M> ExecuteQueryList<M>(string sql, params SqlParameter[] pars)
 		{
-			return m_dBContext.Database.SqlQuery<M>(sql, pars).ToList();
+			return m_dBContext.Database.SqlQuery<M>(sql, pars).AsQueryable();
 		}
 	}
 }

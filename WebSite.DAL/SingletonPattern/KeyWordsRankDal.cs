@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using WebSite.IDAL.SingletonPattern;
 using WebSite.Model.DataBaseModel;
 
@@ -34,7 +35,8 @@ group by SearchDetails.KeyWords";
 		public List<string> GetSearchMsg(string term)
 		{
 			string sql = "select KeyWords from KeyWordsRank where KeyWords like @term";
-			return ExecuteQueryList<string>(sql, new SqlParameter("@term", term + "%"));
+			var msgList = ExecuteQueryList<string>(sql, new SqlParameter("@term", term + "%")).ToList();
+			return msgList;
 		}
 	}
 }

@@ -65,5 +65,10 @@ namespace WebSite.BLL.MashupPattern
 			CurrentDal.EditEntity(entity);
 			return CurrentDbSession.SaveChanged();
 		}
+
+		public void Dispose()
+		{
+			CurrentDbSession.Dispose();
+		}
 	}
 }

@@ -103,12 +103,4 @@ namespace WebSite.BLL.SingletonPattern
 		}
 
 	}
-
-	//public partial class UserInfoGenericService : BaseGenericService<IDAL.SingletonPattern.IUserInfoDal, UserInfo>//, IUserInfoService
-	//{
-	//	public UserInfoGenericService()
-	//	{
-	//		//this.CurrentDal.
-	//	}
-	//}
 }
