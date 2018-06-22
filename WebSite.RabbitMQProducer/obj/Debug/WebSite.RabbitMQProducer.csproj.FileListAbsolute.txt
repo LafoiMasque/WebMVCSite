@@ -14,4 +14,3 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitM
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.pdb
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csprojResolveAssemblyReference.cache

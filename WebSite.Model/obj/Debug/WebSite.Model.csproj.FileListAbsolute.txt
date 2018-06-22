@@ -28,4 +28,3 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.Model\obj\Debug\WebSite.Model.csproj.CoreC
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Model\obj\Debug\WebSite.Model.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Model\obj\Debug\WebSite.Model.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Model\obj\Debug\WebSite.Model.pdb
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.Model\obj\Debug\WebSite.Model.csprojResolveAssemblyReference.cache

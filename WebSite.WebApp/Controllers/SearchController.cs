@@ -56,7 +56,7 @@ namespace WebSite.WebApp.Controllers
 				//queryTitle.Add(new Term("Title", word));
 			}
 			//多个查询条件的词之间的最大距离.在文章中相隔太远 也就无意义.（例如 “大学生”这个查询条件和"简历"这个查询条件之间如果间隔的词太多也就没有意义了。）
-			queryBody.SetSlop(100);
+			queryBody.Slop = 100;
 			//queryTitle.SetSlop(100);
 
 			#region 多部分查询
@@ -68,18 +68,18 @@ namespace WebSite.WebApp.Controllers
 			#endregion
 
 			//TopScoreDocCollector是盛放查询结果的容器
-			TopScoreDocCollector collector = TopScoreDocCollector.create(1000, true);
+			TopScoreDocCollector collector = TopScoreDocCollector.Create(1000, true);
 			//根据query查询条件进行查询，查询结果放入collector容器
 			searcher.Search(queryBody, null, collector);
 			//得到所有查询结果中的文档,GetTotalHits():表示总条数   TopDocs(300, 20);//表示得到300（从300开始），到320（结束）的文档内容.
-			ScoreDoc[] docs = collector.TopDocs(0, collector.GetTotalHits()).scoreDocs;
+			ScoreDoc[] docs = collector.TopDocs(0, collector.TotalHits).ScoreDocs;
 			//可以用来实现分页功能
 			List<ContentViewModel> viewModelList = new List<ContentViewModel>();
 			for (int i = 0; i < docs.Length; i++)
 			{
 				//搜索ScoreDoc[]只能获得文档的id,这样不会把查询结果的Document一次性加载到内存中。降低了内存压力，需要获得文档的详细内容的时候通过searcher.Doc来根据文档id来获得文档的详细内容对象Document.
 				ContentViewModel viewModel = new ContentViewModel();
-				int docId = docs[i].doc;//得到查询结果文档的id（Lucene内部分配的id）
+				int docId = docs[i].Doc;//得到查询结果文档的id（Lucene内部分配的id）
 				Document doc = searcher.Doc(docId);//找到文档id对应的文档详细信息
 				viewModel.Id = Convert.ToInt32(doc.Get("Id"));// 取出放进字段的值
 				viewModel.Title = doc.Get("Title");

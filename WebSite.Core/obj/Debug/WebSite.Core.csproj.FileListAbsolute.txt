@@ -41,3 +41,6 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.Core\obj\Debug\WebSite.Core.csproj.CopyCom
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Core\obj\Debug\WebSite.Core.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Core\obj\Debug\WebSite.Core.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Core\obj\Debug\WebSite.Core.csprojResolveAssemblyReference.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.Core\bin\Debug\WebSite.Core.dll.config
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.Core\bin\Debug\Lucene.Net.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.Core\bin\Debug\Lucene.Net.xml

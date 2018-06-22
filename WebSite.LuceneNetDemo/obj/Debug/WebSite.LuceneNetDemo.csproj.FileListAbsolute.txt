@@ -1,10 +1,3 @@
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Dict\ChsDoubleName1.txt
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Dict\ChsDoubleName2.txt
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Dict\ChsSingleName.txt
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Dict\Stopword.txt
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Dict\Synonym.txt
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Dict\Wildcard.txt
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Dict\Dict.dct
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\WebSite.LuceneNetDemo.exe.config
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\WebSite.LuceneNetDemo.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\WebSite.LuceneNetDemo.pdb
@@ -15,4 +8,8 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetD
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.pdb
-D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\obj\Debug\WebSite.LuceneNetDemo.csprojResolveAssemblyReference.cache
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\PanGu.HighLight.dll
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Lucene.Net.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\Lucene.Net.xml
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.LuceneNetDemo\bin\Debug\log4net.dll

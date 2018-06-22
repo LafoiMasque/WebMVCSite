@@ -311,3 +311,6 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\obj\Debug\WebSite.WebApp.csproj.Cor
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\obj\Debug\WebSite.WebApp.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\obj\Debug\WebSite.WebApp.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\obj\Debug\WebSite.WebApp.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\WebSite.Core.dll.config
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Lucene.Net.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.WebApp\bin\Lucene.Net.xml

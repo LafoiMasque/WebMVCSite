@@ -1,5 +1,6 @@
 ﻿using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.PanGu;
+using Lucene.Net.Util;
 using PanGu;
 using PanGu.HighLight;
 using System.Collections.Generic;
@@ -13,13 +14,14 @@ namespace WebSite.Core.Lucene.Net
 		{
 			Analyzer analyzer = new PanGuAnalyzer();
 			TokenStream tokenStream = analyzer.TokenStream("", new StringReader(msg));
-			Token token = null;
+			//Token token = null;
 			List<string> list = new List<string>();
-			while ((token = tokenStream.Next()) != null)
-			{
-				list.Add(token.TermText());
-			}
+			//while ((token = tokenStream.Next()) != null)
+			//{
+			//	list.Add(token.TermText());
+			//}
 			return list;
+			//QueryParser parser = new QueryParser(Version.LUCENE_29, "title", new PanGuAnalyzer());//解析器
 		}
 
 		/// <summary>
