@@ -81,7 +81,7 @@ IsMainRent BIT , --add
 --姓名
 RenterName NVARCHAR(36)NOT NULL ,
 --手机号
-TelPhone VARCHAR(22) NOT NULL,
+TelPhone VARCHAR(22) ,
 --职业
 Job NVARCHAR(20),
 --工作地点
@@ -207,6 +207,21 @@ CreateUserId UNIQUEIDENTIFIER NOT NULL,
 Remark NVARCHAR(64)
 )
 
+--支付明细表
+CREATE TABLE ActualAmountDetail
+(
+	RentId UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+
+	RentAmount NUMERIC(10,2) NOT NULL,
+
+	WaterAmount NUMERIC(10,2),
+
+	PowerAmount NUMERIC(10,2),
+
+	OtherAmount NUMERIC(10,2)
+
+)
+
 --0 现金 1微信支付 2支付宝 3网银 4其他
 CREATE TABLE PayTypeInfo
 （
@@ -254,7 +269,7 @@ Remark NVARCHAR(128)
 CREATE TABLE Things
 (
 --内部编号
-ThingsId VARCHAR(36) NOT NULL PRIMARY KEY,
+ThingsId UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
 --编号
 ThingsNo VARCHAR(36)NOT NULL UNIQUE,
 --名称
@@ -262,7 +277,7 @@ ThingsName VARCHAR(64),
 --标价
 Price NUMERIC(10,2),
 --所属房间号
-RoomId UNIQUEIDENTIFIER,
+RoomId UNIQUEIDENTIFIER NOT NULL,
 --0 Unable 1 Enable 
 StatusCode TINYINT,
 
