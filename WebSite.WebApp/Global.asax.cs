@@ -1,5 +1,6 @@
 ﻿using log4net;
 using log4net.Config;
+using Lucene.Net.Documents;
 using Spring.Web.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,9 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using WebSite.Core.Lucene.Net;
+using WebSite.Core.LuceneNet;
 using WebSite.Model.DataBaseModel;
 using WebSite.WebApp.CustomAttribute;
-using static Lucene.Net.Documents.Field;
 
 namespace WebSite.WebApp
 {
@@ -33,15 +33,15 @@ namespace WebSite.WebApp
 				{
 					FieldName="Title",
 					PropertyName="Title",
-					Index=Index.ANALYZED,
-					TermVector=TermVector.WITH_POSITIONS_OFFSETS,
+					Index=Field.Index.ANALYZED,
+					TermVector=Field.TermVector.WITH_POSITIONS_OFFSETS,
 				},
 				new LuceneDataModel()
 				{
 					FieldName="Price",
 					PropertyName="Price",
-					Index=Index.ANALYZED,
-					TermVector=TermVector.WITH_POSITIONS_OFFSETS,
+					Index=Field.Index.ANALYZED,
+					TermVector=Field.TermVector.WITH_POSITIONS_OFFSETS,
 				}
 			});
 

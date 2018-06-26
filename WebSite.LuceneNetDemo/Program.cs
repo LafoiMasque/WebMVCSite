@@ -1,5 +1,9 @@
-﻿using Lucene.Net.Analysis;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
+using WebSite.LuceneNetDemo.Interface;
+using WebSite.LuceneNetDemo.Service;
 
 namespace WebSite.LuceneNetDemo
 {
@@ -9,24 +13,38 @@ namespace WebSite.LuceneNetDemo
 		{
 			do
 			{
-				Console.WriteLine("分词类型：");
-				ConsoleKeyInfo consoleKeyInfo = Console.ReadKey();
+				Console.WriteLine("======================================================");
+				Console.WriteLine("分词列名：");
+				string fieldName = Console.ReadLine();
+				Console.WriteLine("查询的词：");
+				string keyword = Console.ReadLine();
 				Console.WriteLine();
-				//Token token = null;
-				switch (consoleKeyInfo.Key)
-				{
-					case ConsoleKey.NumPad1:
-						break;
-					case ConsoleKey.NumPad2:
-						break;
-					case ConsoleKey.P:
-						break;
-					case ConsoleKey.O:
-						return;
-					default:
-						break;
-				}
+
+				CommodityRepository repository = new CommodityRepository();
+				//IList<EntryDataModel<Commodity>> entryDataModelList = repository.GetEntryDataModelList();
+				//IndexBuilderThread.BuildIndexThread<Commodity>(entryDataModelList);
+
+				ILuceneQuery<Commodity> luceneQuery = new LuceneQuery<Commodity>();
+				List<Commodity> modelList = luceneQuery.QueryIndex(keyword, fieldName, repository.GetFieldModelList());
+				ShowDataList(modelList);
 			} while (true);
+		}
+
+		private static void ShowDataList<T>(IEnumerable<T> modelList) where T : class
+		{
+			Type type = typeof(T);
+			PropertyInfo[] propertyInfos = type.GetProperties();
+			foreach (var model in modelList)
+			{
+				StringBuilder stringBuilder = new StringBuilder();
+				foreach (var property in propertyInfos)
+				{
+					var propertyValue = property.GetValue(model);
+					if (propertyValue != null)
+						stringBuilder.AppendFormat("{0}={1} ", property.Name, propertyValue.ToString());
+				}
+				Console.WriteLine(stringBuilder.ToString());
+			}
 		}
 	}
 }

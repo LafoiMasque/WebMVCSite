@@ -12,7 +12,8 @@ namespace WebSite.LuceneNetDemo.Interface
 		/// 根据查询的field将keyword分词
 		/// </summary>
 		/// <param name="keyword"></param>
+		/// <param name="fieldName"></param>
 		/// <returns></returns>
-		string[] AnalyzerKey(string keyword);
+		string[] AnalyzerKey(string keyword, string fieldName);
 	}
 }

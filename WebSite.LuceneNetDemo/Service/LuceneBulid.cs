@@ -33,12 +33,12 @@ namespace WebSite.LuceneNetDemo.Service
 		/// <param name="fieldModelList"></param>
 		/// <param name="pathSuffix">索引目录后缀，加在电商的路径后面，为空则为根目录.如sa\1</param>
 		/// <param name="isCreate">默认为false 增量索引  true的时候删除原有索引</param>
-		public void BuildIndex(IList<T> modelList, IList<FieldDataModel> fieldModelList, string pathSuffix = "", bool isCreate = false)
+		public void BuildIndex(IEnumerable<T> modelList, IEnumerable<FieldDataModel> fieldModelList, string pathSuffix = "", bool isCreate = false)
 		{
 			IndexWriter writer = null;
 			try
 			{
-				if (modelList == null || modelList.Count == 0)
+				if (modelList == null || modelList.Count() == 0)
 					return;
 
 				string rootIndexPath = StaticConstant.IndexPath;
@@ -99,20 +99,20 @@ namespace WebSite.LuceneNetDemo.Service
 
 		#region FieldInfo
 
-		//Field.Store.YES:存储字段值（未分词前的字段值）        
-		//Field.Store.NO:不存储,存储与索引没有关系         
+		//Field.Store.YES:存储字段值（未分词前的字段值）        
+		//Field.Store.NO:不存储,存储与索引没有关系         
 		//Field.Store.COMPRESS:压缩存储,用于长文本或二进制，但性能受损
 
-		//Field.Index.ANALYZED:分词建索引         
-		//Field.Index.ANALYZED_NO_NORMS:分词建索引，但是Field的值不像通常那样被保存，而是只取一个byte，这样节约存储空间         
-		//Field.Index.NOT_ANALYZED:不分词且索引         
+		//Field.Index.ANALYZED:分词建索引         
+		//Field.Index.ANALYZED_NO_NORMS:分词建索引，但是Field的值不像通常那样被保存，而是只取一个byte，这样节约存储空间         
+		//Field.Index.NOT_ANALYZED:不分词且索引         
 		//Field.Index.NOT_ANALYZED_NO_NORMS:不分词建索引，Field的值去一个byte保存
 
-		//TermVector表示文档的条目（由一个Document和Field定位）和它们在当前文档中所出现的次数         
-		//Field.TermVector.YES:为每个文档（Document）存储该字段的TermVector         
-		//Field.TermVector.NO:不存储TermVector         
-		//Field.TermVector.WITH_POSITIONS:存储位置        
-		//Field.TermVector.WITH_OFFSETS:存储偏移量         
+		//TermVector表示文档的条目（由一个Document和Field定位）和它们在当前文档中所出现的次数         
+		//Field.TermVector.YES:为每个文档（Document）存储该字段的TermVector         
+		//Field.TermVector.NO:不存储TermVector         
+		//Field.TermVector.WITH_POSITIONS:存储位置        
+		//Field.TermVector.WITH_OFFSETS:存储偏移量         
 		//Field.TermVector.WITH_POSITIONS_OFFSETS:存储位置和偏移量
 
 		#endregion
@@ -126,7 +126,7 @@ namespace WebSite.LuceneNetDemo.Service
 		/// </summary>
 		/// <param name="model"></param>
 		/// <param name="fieldModelList"></param>
-		public void InsertIndex(T model, IList<FieldDataModel> fieldModelList)
+		public void InsertIndex(T model, IEnumerable<FieldDataModel> fieldModelList)
 		{
 			IndexWriter writer = null;
 			try
@@ -138,7 +138,7 @@ namespace WebSite.LuceneNetDemo.Service
 
 				bool isCreate = dirInfo.GetFiles().Count() == 0;//下面没有文件则为新建索引 
 				Directory directory = FSDirectory.Open(dirInfo);
-				writer = new IndexWriter(directory, CreateAnalyzerWrapper(), isCreate, IndexWriter.MaxFieldLength.LIMITED);
+				writer = new IndexWriter(directory, CreateAnalyzerWrapper(fieldModelList), isCreate, IndexWriter.MaxFieldLength.LIMITED);
 				writer.MergeFactor = 100;//控制多个segment合并的频率，默认10
 				writer.UseCompoundFile = true;//创建符合文件 减少索引文件数量
 				CreateModelIndex(writer, model, fieldModelList);
@@ -163,7 +163,7 @@ namespace WebSite.LuceneNetDemo.Service
 		/// </summary>
 		/// <param name="modelList"></param>
 		/// <param name="fieldModelList"></param>
-		public void InsertIndexMultitude(IList<T> modelList, IList<FieldDataModel> fieldModelList)
+		public void InsertIndexMultitude(IEnumerable<T> modelList, IEnumerable<FieldDataModel> fieldModelList)
 		{
 			BuildIndex(modelList, fieldModelList, "", false);
 		}
@@ -183,12 +183,12 @@ namespace WebSite.LuceneNetDemo.Service
 		/// 批量删除数据的索引
 		/// </summary>
 		/// <param name="modelList"></param>
-		public void DeleteIndexMultitude(IList<T> modelList, string propertyName)
+		public void DeleteIndexMultitude(IEnumerable<T> modelList, string propertyName)
 		{
 			IndexReader reader = null;
 			try
 			{
-				if (modelList == null || modelList.Count == 0)
+				if (modelList == null || modelList.Count() == 0)
 					return;
 				Analyzer analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30);
 				string rootIndexPath = StaticConstant.IndexPath;
@@ -232,7 +232,7 @@ namespace WebSite.LuceneNetDemo.Service
 		/// <param name="model"></param>
 		/// <param name="propertyName"></param>
 		/// <param name="fieldModelList"></param>
-		public void UpdateIndex(T model, string propertyName, IList<FieldDataModel> fieldModelList)
+		public void UpdateIndex(T model, string propertyName, IEnumerable<FieldDataModel> fieldModelList)
 		{
 			IList<T> modelList = model != null ? new List<T>() { model } : null;
 			UpdateIndexMultitude(modelList, propertyName, fieldModelList);
@@ -244,19 +244,19 @@ namespace WebSite.LuceneNetDemo.Service
 		/// <param name="modelList">sourceflag统一的</param>
 		/// <param name="propertyName"></param>
 		/// <param name="fieldModelList"></param>
-		public void UpdateIndexMultitude(IList<T> modelList, string propertyName, IList<FieldDataModel> fieldModelList)
+		public void UpdateIndexMultitude(IEnumerable<T> modelList, string propertyName, IEnumerable<FieldDataModel> fieldModelList)
 		{
 			IndexWriter writer = null;
 			try
 			{
-				if (modelList == null || modelList.Count == 0)
+				if (modelList == null || modelList.Count() == 0)
 					return;
 				string rootIndexPath = StaticConstant.IndexPath;
 				System.IO.DirectoryInfo dirInfo = System.IO.Directory.CreateDirectory(rootIndexPath);
 
 				bool isCreate = dirInfo.GetFiles().Count() == 0;//下面没有文件则为新建索引 
 				Directory directory = FSDirectory.Open(dirInfo);
-				writer = new IndexWriter(directory, CreateAnalyzerWrapper(), isCreate, IndexWriter.MaxFieldLength.LIMITED);
+				writer = new IndexWriter(directory, CreateAnalyzerWrapper(fieldModelList), isCreate, IndexWriter.MaxFieldLength.LIMITED);
 				writer.MergeFactor = 50;//控制多个segment合并的频率，默认10
 				writer.UseCompoundFile = true;//创建符合文件 减少索引文件数量
 				Type type = typeof(T);
@@ -291,13 +291,27 @@ namespace WebSite.LuceneNetDemo.Service
 		/// 创建分析器
 		/// </summary>
 		/// <returns></returns>
-		private PerFieldAnalyzerWrapper CreateAnalyzerWrapper()
+		private PerFieldAnalyzerWrapper CreateAnalyzerWrapper(IEnumerable<FieldDataModel> fieldModelList)
 		{
 			Analyzer analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30);
 
 			PerFieldAnalyzerWrapper analyzerWrapper = new PerFieldAnalyzerWrapper(analyzer);
-			analyzerWrapper.AddAnalyzer("title", new PanGuAnalyzer());
-			analyzerWrapper.AddAnalyzer("categoryid", new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30));
+			foreach (var fieldModel in fieldModelList)
+			{
+				if (fieldModel.FieldType == TypeCode.String && (fieldModel.Index == Field.Index.ANALYZED || fieldModel.Index == Field.Index.ANALYZED_NO_NORMS))
+				{
+					analyzerWrapper.AddAnalyzer(fieldModel.FieldName, new PanGuAnalyzer());
+				}
+				else if ((fieldModel.FieldType == TypeCode.Single
+					|| fieldModel.FieldType == TypeCode.Int32
+					|| fieldModel.FieldType == TypeCode.Int64
+					|| fieldModel.FieldType == TypeCode.Double)
+					&& (fieldModel.Index == Field.Index.ANALYZED
+					|| fieldModel.Index == Field.Index.ANALYZED_NO_NORMS))
+				{
+					analyzerWrapper.AddAnalyzer(fieldModel.FieldName, new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_30));
+				}
+			}
 			return analyzerWrapper;
 		}
 
@@ -307,7 +321,7 @@ namespace WebSite.LuceneNetDemo.Service
 		/// <param name="writer"></param>
 		/// <param name="model"></param>
 		/// <param name="fieldModelList"></param>
-		private void CreateModelIndex(IndexWriter writer, T model, IList<FieldDataModel> fieldModelList)
+		private void CreateModelIndex(IndexWriter writer, T model, IEnumerable<FieldDataModel> fieldModelList)
 		{
 			try
 			{
@@ -325,7 +339,7 @@ namespace WebSite.LuceneNetDemo.Service
 		/// <param name="model"></param>
 		/// <param name="fieldModelList"></param>
 		/// <returns></returns>
-		private Document ParseModeltoDoc(T model, IList<FieldDataModel> fieldModelList)
+		private Document ParseModeltoDoc(T model, IEnumerable<FieldDataModel> fieldModelList)
 		{
 			Document document = new Document();
 			Type type = model.GetType();

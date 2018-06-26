@@ -61,6 +61,7 @@
       <HintPath>..\packages\ServiceStack.Text.5.1.0\lib\net45\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,10 +71,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lucene.Net\IndexManager.cs" />
-    <Compile Include="Lucene.Net\LuceneCommon.cs" />
-    <Compile Include="Lucene.Net\LuceneDataModel.cs" />
-    <Compile Include="Lucene.Net\LuceneTypeEnum.cs" />
+    <Compile Include="LuceneNet\DataService\ModelLucene.cs" />
+    <Compile Include="LuceneNet\DataService\SqlHelper.cs" />
+    <Compile Include="LuceneNet\IndexManager.cs" />
+    <Compile Include="LuceneNet\Interface\ILuceneAnalyze.cs" />
+    <Compile Include="LuceneNet\Interface\ILuceneBulid.cs" />
+    <Compile Include="LuceneNet\Interface\ILuceneQuery.cs" />
+    <Compile Include="LuceneNet\LuceneCommon.cs" />
+    <Compile Include="LuceneNet\LuceneDataModel.cs" />
+    <Compile Include="LuceneNet\LuceneTypeEnum.cs" />
+    <Compile Include="LuceneNet\Model\EntryDataModel.cs" />
+    <Compile Include="LuceneNet\Model\FieldDataModel.cs" />
+    <Compile Include="LuceneNet\Processor\IndexBuilderPerThread.cs" />
+    <Compile Include="LuceneNet\Processor\IndexBuilderThread.cs" />
+    <Compile Include="LuceneNet\Service\LuceneAnalyze.cs" />
+    <Compile Include="LuceneNet\Service\LuceneBulid.cs" />
+    <Compile Include="LuceneNet\Service\LuceneQuery.cs" />
+    <Compile Include="LuceneNet\Utility\StaticConstant.cs" />
     <Compile Include="MemcacheHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redis\Init\RedisConfigInfo.cs" />
@@ -95,6 +109,9 @@
       <Project>{522D5DDD-B93A-4AA7-9B08-C79C34A0460A}</Project>
       <Name>WebSite.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LuceneNet\CfgFiles\log4net.cfg.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

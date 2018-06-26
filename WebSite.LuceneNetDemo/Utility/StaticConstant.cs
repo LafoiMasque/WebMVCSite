@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace WebSite.LuceneNetDemo.Utility
 {
-    public class StaticConstant
-    {
-        public static string IndexPath = ConfigurationManager.AppSettings["IndexPath"];
-    }
+	public class StaticConstant
+	{
+		public static readonly string IndexPath = ConfigurationManager.AppSettings["TestIndexPath"];
+	}
 }

@@ -1,13 +1,12 @@
-﻿using log4net.Repository.Hierarchy;
-using Lucene.Net.Analysis;
+﻿using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.PanGu;
 using Lucene.Net.Index;
 using Lucene.Net.QueryParsers;
 using Lucene.Net.Search;
-using System.Collections.Generic;
-using System.Linq;
 using WebSite.LuceneNetDemo.Interface;
 using WebSite.LuceneNetDemo.Utility;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebSite.LuceneNetDemo.Service
 {
@@ -21,11 +20,12 @@ namespace WebSite.LuceneNetDemo.Service
 		/// 将搜索的keyword分词
 		/// </summary>
 		/// <param name="keyword"></param>
+		/// <param name="fieldName"></param>
 		/// <returns></returns>
-		public string[] AnalyzerKey(string keyword)
+		public string[] AnalyzerKey(string keyword, string fieldName)
 		{
 			Analyzer analyzer = new PanGuAnalyzer();
-			QueryParser parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "title", analyzer);
+			QueryParser parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, fieldName, analyzer);
 			Query query = parser.Parse(CleanKeyword(keyword));
 			if (query is TermQuery)
 			{

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Web.Mvc;
-using WebSite.Core.Lucene.Net;
+using WebSite.Core.LuceneNet;
 using WebSite.IBLL.SingletonPattern;
 using WebSite.Model.DataBaseModel;
 using WebSite.WebApp.Models;

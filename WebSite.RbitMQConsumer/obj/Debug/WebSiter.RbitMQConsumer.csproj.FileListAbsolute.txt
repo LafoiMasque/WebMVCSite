@@ -14,3 +14,4 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQCo
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csproj.CopyComplete
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.pdb
+D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csprojResolveAssemblyReference.cache

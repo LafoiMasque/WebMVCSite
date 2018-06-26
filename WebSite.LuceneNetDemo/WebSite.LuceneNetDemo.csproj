@@ -61,12 +61,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commodity.cs" />
+    <Compile Include="CommodityRepository.cs" />
+    <Compile Include="DataService\ModelLucene.cs" />
+    <Compile Include="DataService\SqlHelper.cs" />
     <Compile Include="Interface\ILuceneAnalyze.cs" />
     <Compile Include="Interface\ILuceneBulid.cs" />
     <Compile Include="Interface\ILuceneQuery.cs" />
+    <Compile Include="LuceneTest.cs" />
+    <Compile Include="Model\EntryDataModel.cs" />
     <Compile Include="Model\FieldDataModel.cs" />
+    <Compile Include="Processor\IndexBuilderPerThread.cs" />
+    <Compile Include="Processor\IndexBuilderThread.cs" />
     <Compile Include="Service\LuceneAnalyze.cs" />
     <Compile Include="Service\LuceneBulid.cs" />
+    <Compile Include="Service\LuceneQuery.cs" />
     <Compile Include="Utility\CustomLogger.cs" />
     <Compile Include="Utility\StaticConstant.cs" />
     <Compile Include="Program.cs" />
