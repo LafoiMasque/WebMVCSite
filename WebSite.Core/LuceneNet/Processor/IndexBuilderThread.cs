@@ -14,36 +14,35 @@ namespace WebSite.Core.LuceneNet.Processor
 	public class IndexBuilderThread
 	{
 		//private static CustomLogger m_logger = new CustomLogger(typeof(IndexBuilderThread));
-		private static List<string> PathSuffixList = new List<string>();
-		private static CancellationTokenSource CTS = null;
+		private static List<string> m_pathSuffixList = new List<string>();
+		private static CancellationTokenSource m_cts = null;
 
-		public static void BuildIndexThread<T>(IList<EntryDataModel<T>> entryDataModelList) where T : class, new()
+		public static void BuildIndexThread<T>(IEnumerable<EntryDataModel<T>> entryDataModelList) where T : class, new()
 		{
 			try
 			{
-				int count = entryDataModelList != null ? entryDataModelList.Count : 0;
-				if (count > 0)
+				if (entryDataModelList != null && entryDataModelList.Count() > 0)
 				{
 					//m_logger.Debug(string.Format("{0} BuildIndex开始", DateTime.Now));
 
 					List<Task> taskList = new List<Task>();
 					TaskFactory taskFactory = new TaskFactory();
-					CTS = new CancellationTokenSource();
-
-					for (int i = 1; i <= count; i++)
+					m_cts = new CancellationTokenSource();
+					int i = 1;
+					foreach (var entryDataModel in entryDataModelList)
 					{
 						IndexBuilderPerThread<T> prerThread = null;
-						var entryDataModel = entryDataModelList[i - 1];
 						if (entryDataModel.DataListFunc != null)
 						{
-							prerThread = new IndexBuilderPerThread<T>(entryDataModel.DataListFunc, entryDataModel.FieldModelList, i.ToString("000"), CTS);
+							prerThread = new IndexBuilderPerThread<T>(entryDataModel.DataListFunc, entryDataModel.FieldModelList, i.ToString("000"), m_cts);
 						}
-						else 
+						else
 						{
-							prerThread = new IndexBuilderPerThread<T>(entryDataModel.DataList, entryDataModel.FieldModelList, i.ToString("000"), CTS);
+							prerThread = new IndexBuilderPerThread<T>(entryDataModel.DataList, entryDataModel.FieldModelList, i.ToString("000"), m_cts);
 						}
-						PathSuffixList.Add(i.ToString("000"));
+						m_pathSuffixList.Add(i.ToString("000"));
 						taskList.Add(taskFactory.StartNew(prerThread.Process));//开启一个线程   里面创建索引
+						i++;
 					}
 					taskList.Add(taskFactory.ContinueWhenAll(taskList.ToArray(), MergeIndex<T>));
 					Task.WaitAll(taskList.ToArray());
@@ -64,14 +63,14 @@ namespace WebSite.Core.LuceneNet.Processor
 		{
 			try
 			{
-				if (CTS.IsCancellationRequested)
+				if (m_cts.IsCancellationRequested)
 					return;
 				ILuceneBulid<T> builder = new LuceneBulid<T>();
-				builder.MergeIndex(PathSuffixList.ToArray());
+				builder.MergeIndex(m_pathSuffixList.ToArray());
 			}
 			catch (Exception ex)
 			{
-				CTS.Cancel();
+				m_cts.Cancel();
 				//m_logger.Error("MergeIndex出现异常", ex);
 			}
 		}

@@ -61,8 +61,8 @@ namespace WebSite.Core.LuceneNet.DataService
 		{
 			StringBuilder queryStringBuilder = new StringBuilder();
 			ILuceneAnalyze analyzer = new LuceneAnalyze();
-			string[] words = analyzer.AnalyzerKey(keyword, fieldName);
-			if (words.Length == 1)
+			List<string> words = analyzer.AnalyzerKey(keyword, fieldName);
+			if (words.Count == 1)
 			{
 				queryStringBuilder.AppendFormat("{0}:{1}* ", fieldName, words[0]);
 			}

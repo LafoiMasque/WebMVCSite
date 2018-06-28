@@ -17,12 +17,12 @@ namespace WebSite.Core.LuceneNet.Service
 		#region AnalyzerKey
 
 		/// <summary>
-		/// 将搜索的keyword分词
+		/// 根据查询的field将keyword分词
 		/// </summary>
-		/// <param name="keyword"></param>
 		/// <param name="fieldName"></param>
+		/// <param name="keyword"></param>
 		/// <returns></returns>
-		public string[] AnalyzerKey(string keyword, string fieldName)
+		public List<string> AnalyzerKey(string fieldName, string keyword)
 		{
 			Analyzer analyzer = new PanGuAnalyzer();
 			QueryParser parser = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, fieldName, analyzer);
@@ -30,12 +30,12 @@ namespace WebSite.Core.LuceneNet.Service
 			if (query is TermQuery)
 			{
 				Term term = ((TermQuery)query).Term;
-				return new string[] { term.Text };
+				return new List<string> { term.Text };
 			}
 			else if (query is PhraseQuery)
 			{
 				Term[] term = ((PhraseQuery)query).GetTerms();
-				return term.Select(t => t.Text).ToArray();
+				return term.Select(t => t.Text).ToList();
 			}
 			else if (query is BooleanQuery)
 			{
@@ -55,12 +55,12 @@ namespace WebSite.Core.LuceneNet.Service
 						analyzerWords.AddRange(term.Select(t => t.Text));
 					}
 				}
-				return analyzerWords.ToArray();
+				return analyzerWords;
 			}
 			else
 			{
 				//m_logger.Debug(string.Format("AnalyzerKey在解析keyword={0}的结果为new string[] { keyword } ", keyword));
-				return new string[] { keyword };
+				return new List<string> { keyword };
 			}
 		}
 

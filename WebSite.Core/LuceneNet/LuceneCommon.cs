@@ -5,23 +5,18 @@ using PanGu;
 using PanGu.HighLight;
 using System.Collections.Generic;
 using System.IO;
+using WebSite.Core.LuceneNet.Interface;
+using WebSite.Core.LuceneNet.Model;
+using WebSite.Core.LuceneNet.Service;
 
 namespace WebSite.Core.LuceneNet
 {
 	public class LuceneCommon
 	{
-		public static List<string> PanGuSplitWord(string msg)
+		public static List<string> PanGuSplitWord(string fieldName, string keyword)
 		{
-			Analyzer analyzer = new PanGuAnalyzer();
-			TokenStream tokenStream = analyzer.TokenStream("", new StringReader(msg));
-			//Token token = null;
-			List<string> list = new List<string>();
-			//while ((token = tokenStream.Next()) != null)
-			//{
-			//	list.Add(token.TermText());
-			//}
-			return list;
-			//QueryParser parser = new QueryParser(Version.LUCENE_29, "title", new PanGuAnalyzer());//解析器
+			ILuceneAnalyze luceneAnalyze = new LuceneAnalyze();
+			return luceneAnalyze.AnalyzerKey(fieldName, keyword);
 		}
 
 		/// <summary>

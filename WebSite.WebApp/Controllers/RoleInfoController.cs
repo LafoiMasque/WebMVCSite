@@ -110,7 +110,7 @@ namespace WebSite.WebApp.Controllers
 			}
 			bool isOK = RoleInfoService.SetRoleActionInfo(roleId, list);
 			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum);
 			return Json(resultModel);
 		}
 	}

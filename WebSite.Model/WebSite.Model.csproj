@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomAttribute\EnumDisplayAttribute.cs" />
     <Compile Include="DataBaseModel\ActionInfo.cs" />
     <Compile Include="DataBaseModel\ActionInfo_DepartmentInfo.cs" />
     <Compile Include="DataBaseModel\Category.cs" />
@@ -71,8 +72,8 @@
     <Compile Include="DataBaseModel\UserInfo_ActionInfo.cs" />
     <Compile Include="DataBaseModel\UserInfo_DepartmentInfo.cs" />
     <Compile Include="DataBaseModel\WebSiteDbContext.cs" />
-    <Compile Include="DataModel\CodeMessage.cs" />
-    <Compile Include="DataModel\ResultCodeEnum.cs" />
+    <Compile Include="EnumExtention\EnumTypeExtention.cs" />
+    <Compile Include="EnumType\ResultCodeEnum.cs" />
     <Compile Include="DataModel\ResultModel.cs" />
     <Compile Include="EnumType\ActionTypeEnum.cs" />
     <Compile Include="EnumType\DeleteTypeEnum.cs" />

@@ -78,7 +78,6 @@
     <Compile Include="LuceneNet\Interface\ILuceneBulid.cs" />
     <Compile Include="LuceneNet\Interface\ILuceneQuery.cs" />
     <Compile Include="LuceneNet\LuceneCommon.cs" />
-    <Compile Include="LuceneNet\LuceneDataModel.cs" />
     <Compile Include="LuceneNet\LuceneTypeEnum.cs" />
     <Compile Include="LuceneNet\Model\EntryDataModel.cs" />
     <Compile Include="LuceneNet\Model\FieldDataModel.cs" />

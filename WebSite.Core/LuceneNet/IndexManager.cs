@@ -8,13 +8,14 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using WebSite.Common.UtilityClass;
+using WebSite.Core.LuceneNet.Model;
 
 namespace WebSite.Core.LuceneNet
 {
 	public static class IndexManager<T>
 	{
 		private static string m_directoryPath = string.Empty;
-		private static IList<LuceneDataModel> m_luceneDataModels = null;
+		private static IList<FieldDataModel> m_luceneDataModels = null;
 
 		public static Queue<KeyValuePair<T, LuceneTypeEnum>> Queue { get; private set; }
 
@@ -23,7 +24,7 @@ namespace WebSite.Core.LuceneNet
 			Queue = new Queue<KeyValuePair<T, LuceneTypeEnum>>();
 		}
 
-		public static void InitData(string directoryPath, IList<LuceneDataModel> luceneDataModels)
+		public static void InitData(string directoryPath, IList<FieldDataModel> luceneDataModels)
 		{
 			m_directoryPath = directoryPath;
 			m_luceneDataModels = luceneDataModels;
@@ -117,19 +118,42 @@ namespace WebSite.Core.LuceneNet
 						//Field.Store.YES:表示是否存储原值。只有当Field.Store.YES在后面才能用doc.Get("number")取出值来.Field.Index. NOT_ANALYZED:不进行分词保存
 						//Field.Index. ANALYZED:进行分词保存:也就是要进行全文的字段要设置分词 保存（因为要进行模糊查询
 						//Lucene.Net.Documents.Field.TermVector.WITH_POSITIONS_OFFSETS:不仅保存分词还保存分词的距离。
-						foreach (LuceneDataModel item in m_luceneDataModels)
+						foreach (FieldDataModel item in m_luceneDataModels)
 						{
 							propertyInfo = type.GetProperty(item.PropertyName);
-							IFieldable fieldable = null;
-							if (item.FieldType == FieldTypeEnum.Field)
+							var propertyValue = propertyInfo.GetValue(model);
+							if (propertyValue != null)
 							{
-								fieldable = new Field(item.FieldName, propertyInfo.GetValue(model).ObjectToString(), item.Store, item.Index, item.TermVector);
+								string valueString = propertyValue.ToString();
+								IFieldable fieldable = null;
+								if (item.FieldType == TypeCode.String)
+								{
+									fieldable = new Field(item.FieldName, propertyInfo.GetValue(model).ObjectToString(), item.Store, item.Index, item.TermVector);
+								}
+								else
+								{
+									NumericField numericField = new NumericField(item.FieldName, item.Store, item.Index == Field.Index.ANALYZED_NO_NORMS);
+									switch (item.FieldType)
+									{
+										case TypeCode.Double:
+											numericField.SetDoubleValue(Convert.ToDouble(valueString));
+											break;
+										case TypeCode.Single:
+											numericField.SetFloatValue(Convert.ToSingle(valueString));
+											break;
+										case TypeCode.Int32:
+											numericField.SetIntValue(Convert.ToInt32(valueString));
+											break;
+										case TypeCode.Int64:
+											numericField.SetLongValue(Convert.ToInt64(valueString));
+											break;
+										default:
+											break;
+									}
+									fieldable = numericField;
+								}
+								document.Add(fieldable);
 							}
-							else if (item.FieldType == FieldTypeEnum.NumericField)
-							{
-								fieldable = new NumericField(item.FieldName, item.Store, item.Index == Field.Index.ANALYZED_NO_NORMS);
-							}
-							document.Add(fieldable);
 						}
 						writer.AddDocument(document);
 					}

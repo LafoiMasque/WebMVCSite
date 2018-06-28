@@ -11,9 +11,9 @@ namespace WebSite.Core.LuceneNet.Interface
 		/// <summary>
 		/// 根据查询的field将keyword分词
 		/// </summary>
-		/// <param name="keyword"></param>
 		/// <param name="fieldName"></param>
+		/// <param name="keyword"></param>
 		/// <returns></returns>
-		string[] AnalyzerKey(string keyword,string fieldName);
+		List<string> AnalyzerKey(string fieldName, string keyword);
 	}
 }

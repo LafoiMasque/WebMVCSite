@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using WebSite.Core.LuceneNet;
+using WebSite.Core.LuceneNet.Model;
 using WebSite.Model.DataBaseModel;
 using WebSite.WebApp.CustomAttribute;
 
@@ -22,25 +23,26 @@ namespace WebSite.WebApp
 			//读取了配置文件中关于Log4Net配置信息.
 			XmlConfigurator.Configure();
 			//开始线程扫描LuceneNet对应的数据队列。
-			IndexManager<JD_Commodity_001>.InitData(System.Configuration.ConfigurationManager.AppSettings["LuceneNetDir"], new List<LuceneDataModel>()
+			IndexManager<JD_Commodity_001>.InitData(System.Configuration.ConfigurationManager.AppSettings["LuceneNetDir"], new List<FieldDataModel>()
 			{
-				new LuceneDataModel()
+				new FieldDataModel()
 				{
 					FieldName="Id",
 					PropertyName="Id",
+					Store=Field.Store.NO,
 				},
-				new LuceneDataModel()
+				new FieldDataModel()
 				{
 					FieldName="Title",
 					PropertyName="Title",
 					Index=Field.Index.ANALYZED,
 					TermVector=Field.TermVector.WITH_POSITIONS_OFFSETS,
 				},
-				new LuceneDataModel()
+				new FieldDataModel()
 				{
 					FieldName="Price",
 					PropertyName="Price",
-					Index=Field.Index.ANALYZED,
+					Index=Field.Index.NOT_ANALYZED,
 					TermVector=Field.TermVector.WITH_POSITIONS_OFFSETS,
 				}
 			});

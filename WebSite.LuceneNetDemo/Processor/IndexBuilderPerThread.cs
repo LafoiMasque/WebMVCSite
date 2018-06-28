@@ -16,12 +16,12 @@ namespace WebSite.LuceneNetDemo.Processor
 		private CustomLogger m_logger = new CustomLogger(typeof(IndexBuilderPerThread<T>));
 		private int m_currentThreadNum = 0;
 		private string m_pathSuffix = "";
-		private List<T> m_dataList = null;
-		private Func<List<T>> m_getDataListFunc = null;
-		private IList<FieldDataModel> m_fieldModelList = null;
+		private IEnumerable<T> m_dataList = null;
+		private Func<IEnumerable<T>> m_getDataListFunc = null;
+		private IEnumerable<FieldDataModel> m_fieldModelList = null;
 		private CancellationTokenSource m_cts = null;
 
-		public IndexBuilderPerThread(Func<List<T>> getDataListFunc, IList<FieldDataModel> fieldModelList, string pathSuffix, CancellationTokenSource cts)
+		public IndexBuilderPerThread(Func<IEnumerable<T>> getDataListFunc, IEnumerable<FieldDataModel> fieldModelList, string pathSuffix, CancellationTokenSource cts)
 		{
 			m_getDataListFunc = getDataListFunc;
 			m_fieldModelList = fieldModelList;
@@ -29,7 +29,7 @@ namespace WebSite.LuceneNetDemo.Processor
 			m_cts = cts;
 		}
 
-		public IndexBuilderPerThread(List<T> dataList, IList<FieldDataModel> fieldModelList, string pathSuffix, CancellationTokenSource cts)
+		public IndexBuilderPerThread(IEnumerable<T> dataList, IEnumerable<FieldDataModel> fieldModelList, string pathSuffix, CancellationTokenSource cts)
 		{
 			m_dataList = dataList;
 			m_fieldModelList = fieldModelList;
@@ -47,13 +47,14 @@ namespace WebSite.LuceneNetDemo.Processor
 				bool isFirst = true;
 				if (!m_cts.IsCancellationRequested)
 				{
-					List<T> modelList = m_getDataListFunc != null ? m_getDataListFunc() : null;
+					IEnumerable<T> modelList = m_getDataListFunc != null ? m_getDataListFunc() : null;
 					if (modelList == null)
 						modelList = m_dataList;
-					if (modelList != null && modelList.Count > 0)
+					int count = modelList != null ? modelList.Count() : 0;
+					if (count > 0)
 					{
 						builder.BuildIndex(modelList, m_fieldModelList, m_pathSuffix, isFirst);
-						m_logger.Debug(string.Format("ThreadNum={0}完成{1}条的创建", m_currentThreadNum, modelList.Count));
+						m_logger.Debug(string.Format("ThreadNum={0}完成{1}条的创建", m_currentThreadNum, count));
 						isFirst = false;
 					}
 				}

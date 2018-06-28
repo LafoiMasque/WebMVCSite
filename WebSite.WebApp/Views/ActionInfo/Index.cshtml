@@ -34,9 +34,9 @@
               $("#addForm").ajaxSubmit({
                   success: function (str) {
                       if (data.StatusCode == 200) {
-                          var img = "<img src='" + data.Message + "' width='30' height='30'/>";
+                          var img = "<img src='" + data.Data + "' width='30' height='30'/>";
                           $("#showImage").append(img);
-                          $("#hiddenMenuIcon").val(data.Message);//将上传成功的图片路径存储到隐藏域中。
+                          $("#hiddenMenuIcon").val(data.Data);//将上传成功的图片路径存储到隐藏域中。
                       } else {
                           alert(data.Message);
                       }

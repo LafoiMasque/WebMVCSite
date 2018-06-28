@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebSite.IBLL.SingletonPattern;
 using WebSite.Model.DataBaseModel;
 using WebSite.Model.DataModel;
+using WebSite.Model.EnumExtention;
 using WebSite.Model.EnumType;
 using WebSite.WebApp.CustomAttribute;
 
@@ -67,11 +68,12 @@ namespace WebSite.WebApp.Controllers
 				string fullDir = dir + newfileName + fileExt;
 				file.SaveAs(Request.MapPath(fullDir));
 				//自己加上图片的缩略图
-				resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Success, fullDir));
+				ResultCodeEnum resultCodeEnum = ResultCodeEnum.Success;
+				resultModel = new ResultModel<string>(resultCodeEnum, resultCodeEnum.Display(), fullDir);
 			}
 			else
 			{
-				resultModel = new ResultModel<string>(new CodeMessage(ResultCodeEnum.Failure, "文件类型错误!!"));
+				resultModel = new ResultModel<string>(ResultCodeEnum.Failure, "文件类型错误!!");
 			}
 			return Json(resultModel, JsonRequestBehavior.AllowGet);
 		}

@@ -82,7 +82,7 @@ namespace WebSite.WebApp.Controllers
 			//将list集合存储要删除的记录编号发送到服务端
 			bool isOK = UserInfoService.DeleteEntities(list);
 			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum);
 			return Json(resultModel);
 		}
 
@@ -98,7 +98,7 @@ namespace WebSite.WebApp.Controllers
 			userInfo.Account = userInfo.UserName;
 			bool isOK = UserInfoService.AddEntity(userInfo);
 			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum);
 			return Json(resultModel);
 		}
 
@@ -125,7 +125,7 @@ namespace WebSite.WebApp.Controllers
 			userInfo.LastModifyTime = DateTime.Now;
 			bool isOK = UserInfoService.EditEntity(userInfo);
 			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum);
 			return Json(resultModel);
 		}
 
@@ -170,7 +170,7 @@ namespace WebSite.WebApp.Controllers
 			}
 			bool isOK = UserInfoService.SetUserRoleInfo(userId, roleIdList);
 			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum);
 			return Json(resultModel);
 		}
 
@@ -205,7 +205,7 @@ namespace WebSite.WebApp.Controllers
 			bool isPass = Request["isPass"] == "true" ? true : false;
 			bool isOK = UserInfoService.SetUserActionInfo(actionId, userId, isPass);
 			ResultCodeEnum resultCodeEnum = isOK ? ResultCodeEnum.Success : ResultCodeEnum.Failure;
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum);
 			return Json(resultModel);
 		}
 
@@ -223,16 +223,20 @@ namespace WebSite.WebApp.Controllers
 			if (roleInfo_userInfo_actionInfo != null)
 			{
 				if (UserInfo_ActionInfoService.DeleteEntity(roleInfo_userInfo_actionInfo))
+				{
+					resultCodeEnum = ResultCodeEnum.Success;
 					result = "删除成功!!";
+				}
 				else
+				{
 					result = "删除失败!!";
-				resultCodeEnum = ResultCodeEnum.Success;
+				}
 			}
 			else
 			{
 				result = "数据不存在!!";
 			}
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum, result));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum, result);
 			return Json(resultModel);
 		}
 	}

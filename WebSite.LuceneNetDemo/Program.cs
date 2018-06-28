@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using WebSite.LuceneNetDemo.Interface;
+using WebSite.LuceneNetDemo.Model;
+using WebSite.LuceneNetDemo.Processor;
 using WebSite.LuceneNetDemo.Service;
 
 namespace WebSite.LuceneNetDemo

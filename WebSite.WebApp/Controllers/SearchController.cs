@@ -41,7 +41,7 @@ namespace WebSite.WebApp.Controllers
 		{
 			string indexPath = System.Configuration.ConfigurationManager.AppSettings["LuceneNetDir"];
 			string searchString = Request["txtSearch"];
-			List<string> list = LuceneCommon.PanGuSplitWord(searchString);//对用户输入的搜索条件进行拆分。
+			List<string> list = LuceneCommon.PanGuSplitWord("Title",searchString);//对用户输入的搜索条件进行拆分。
 			FSDirectory directory = FSDirectory.Open(new DirectoryInfo(indexPath), new NoLockFactory());
 			IndexReader reader = IndexReader.Open(directory, true);
 			IndexSearcher searcher = new IndexSearcher(reader);

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WebSite.Model.EnumExtention;
+using WebSite.Model.EnumType;
 
 namespace WebSite.Model.DataModel
 {
@@ -13,28 +11,38 @@ namespace WebSite.Model.DataModel
 		public string Message { get; private set; }
 		public T Data { get; private set; }
 
-		public ResultModel()
+		public ResultModel() : this(ResultCodeEnum.Success)
 		{
-			StatusCode = CodeMessage.GetStatusCode(ResultCodeEnum.Success);
-			Message = CodeMessage.GetMessage(ResultCodeEnum.Success);
 		}
 
-		public ResultModel(CodeMessage codeMessage)
+		public ResultModel(ResultCodeEnum resultCodeEnum) : this(resultCodeEnum, resultCodeEnum.Display())
 		{
-			if (codeMessage != null)
-			{
-				StatusCode = codeMessage.StatusCode;
-				Message = codeMessage.Message;
-			}
 		}
 
-		public ResultModel(T data) : this()
+		public ResultModel(ResultCodeEnum resultCodeEnum, string message) : this((int)resultCodeEnum, message, default(T))
 		{
-			Data = data;
 		}
 
-		public ResultModel(CodeMessage codeMessage, T data) : this(codeMessage)
+		public ResultModel(T data) : this(ResultCodeEnum.Success.Display(), data)
 		{
+		}
+
+		//public ResultModel(ResultCodeEnum resultCodeEnum, T data) : this((int)resultCodeEnum, resultCodeEnum.Display(), data)
+		//{
+		//}
+
+		public ResultModel(string message, T data) : this((int)ResultCodeEnum.Success, message, data)
+		{
+		}
+
+		public ResultModel(ResultCodeEnum resultCodeEnum, string message, T data) : this((int)resultCodeEnum, message, data)
+		{
+		}
+
+		public ResultModel(int statusCode, string message, T data)
+		{
+			StatusCode = statusCode;
+			Message = message;
 			Data = data;
 		}
 

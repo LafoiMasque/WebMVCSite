@@ -24,14 +24,33 @@ namespace WebSite.Common.UtilityClass
 
 		private bool m_isAuthorityFile = false;
 
+		/// <summary>
+		/// 开始初始化
+		/// </summary>
+		/// <param name="filePath">文件路径</param>
 		public void BeginInitialize(string filePath)
+		{
+			BeginInitialize(filePath, null);
+		}
+
+		/// <summary>
+		/// 开始初始化
+		/// </summary>
+		/// <param name="filePath">文件路径</param>
+		/// <param name="elementName">元素名</param>
+		public void BeginInitialize(string filePath, string elementName)
 		{
 			m_filePath = filePath;
 			KeyValuePair<XElement, bool> keyValuePair = GetRootElement(filePath);
 			m_rootXElement = keyValuePair.Key;
+			if (m_rootXElement == null && !string.IsNullOrEmpty(elementName))
+				m_rootXElement = new XElement(elementName);
 			m_isAuthorityFile = keyValuePair.Value;
 		}
 
+		/// <summary>
+		/// 结束初始化
+		/// </summary>
 		public void EndInitialize()
 		{
 			if (m_isAuthorityFile)
@@ -76,6 +95,17 @@ namespace WebSite.Common.UtilityClass
 		/// 获取xml文件中的元素指定类型的实例集合
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns>实例集合</returns>
+		public List<T> GetXmlElementsInstance<T>(Predicate<string> match) where T : class, new()
+		{
+			return GetXmlElementsInstance<T>(typeof(T).Name, match);
+		}
+
+		/// <summary>
+		/// 获取xml文件中的元素指定类型的实例集合
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
 		/// <param name="elementName">元素名</param>
 		/// <returns>实例集合</returns>
 		public List<T> GetXmlElementsInstance<T>(string elementName) where T : class, new()
@@ -111,11 +141,34 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="model">要修改成的数据</param>
+		/// <returns></returns>
+		public bool AddXmlElementInstance<T>(T model) where T : class, new()
+		{
+			return AddXmlElementInstance<T>(model, null);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="model">要修改成的数据</param>
 		/// <param name="parentElementFunc">获取要写入的父元素</param>
 		/// <returns></returns>
 		public bool AddXmlElementInstance<T>(T model, Func<XElement, XElement> parentElementFunc) where T : class, new()
 		{
 			return AddXmlElementInstance<T>(typeof(T).Name, model, parentElementFunc);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="model">要修改成的数据</param>
+		/// <returns></returns>
+		public bool AddXmlElementInstance<T>(string elementName, T model) where T : class, new()
+		{
+			return AddXmlElementInstance<T>(elementName, model, null);
 		}
 
 		/// <summary>
@@ -136,6 +189,17 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public bool AddXmlElementsInstance<T>(IEnumerable<T> dataList) where T : class, new()
+		{
+			return AddXmlElementsInstance<T>(dataList, null);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="dataList">要修改成的数据集合</param>
 		/// <param name="parentElementFunc">获取要写入的父元素</param>
 		/// <returns></returns>
 		public bool AddXmlElementsInstance<T>(IEnumerable<T> dataList, Func<XElement, XElement> parentElementFunc) where T : class, new()
@@ -149,16 +213,40 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="elementName">元素名</param>
 		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public bool AddXmlElementsInstance<T>(string elementName, IEnumerable<T> dataList) where T : class, new()
+		{
+			return AddXmlElementsInstance(elementName, dataList, null);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
 		/// <param name="parentElementFunc">获取要写入的父元素</param>
 		/// <returns></returns>
 		public bool AddXmlElementsInstance<T>(string elementName, IEnumerable<T> dataList, Func<XElement, XElement> parentElementFunc) where T : class, new()
 		{
-			return AddXmlElementsBytDataCollection(m_rootXElement, elementName, dataList, parentElementFunc) != null;
+			m_rootXElement = AddXmlElementsBytDataCollection(m_rootXElement, elementName, dataList, parentElementFunc);
+			return m_rootXElement != null;
 		}
 
 		#endregion
 
 		#region Json对象
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <param name="elementName">元素名</param>
+		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <returns></returns>
+		public bool AddXmlElementInstance(string elementName, string jsonString)
+		{
+			return AddXmlElementInstance(elementName, jsonString, null);
+		}
 
 		/// <summary>
 		/// 添加xml文件中指定类型的数据
@@ -184,25 +272,11 @@ namespace WebSite.Common.UtilityClass
 		/// 修改xml文件中指定类型匹配项的数据
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="model">要修改成的数据</param>
 		/// <returns></returns>
-		public bool EditXmlElementInstance<T>(Predicate<XElement> match, T model) where T : class, new()
+		public bool EditXmlElementInstance<T>(T model) where T : class, new()
 		{
-			return EditXmlElementInstance<T>(typeof(T).Name, match, model);
-		}
-
-		/// <summary>
-		/// 修改xml文件中指定类型匹配项的数据
-		/// </summary>
-		/// <typeparam name="T">类型</typeparam>
-		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
-		/// <param name="model">要修改成的数据</param>
-		/// <returns></returns>
-		public bool EditXmlElementInstance<T>(string elementName, Predicate<XElement> match, T model) where T : class, new()
-		{
-			return EditXmlElementsInstance<T>(elementName, match, new List<T>() { model });
+			return EditXmlElementInstance<T>(model, null);
 		}
 
 		/// <summary>
@@ -210,11 +284,11 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="match">定义要搜索的元素的条件</param>
-		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="model">要修改成的数据</param>
 		/// <returns></returns>
-		public bool EditXmlElementsInstance<T>(Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
+		public bool EditXmlElementInstance<T>(T model, Predicate<XElement> match) where T : class, new()
 		{
-			return EditXmlElementsInstance<T>(typeof(T).Name, match, dataList);
+			return EditXmlElementInstance<T>(typeof(T).Name, model, match);
 		}
 
 		/// <summary>
@@ -222,24 +296,95 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="elementName">元素名</param>
+		/// <param name="model">要修改成的数据</param>
+		/// <returns></returns>
+		public bool EditXmlElementInstance<T>(string elementName, T model) where T : class, new()
+		{
+			return EditXmlElementInstance<T>(elementName, model, null);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="model">要修改成的数据</param>
 		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public bool EditXmlElementInstance<T>(string elementName, T model, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElementsInstance<T>(elementName, new List<T>() { model }, match);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
 		/// <param name="dataList">要修改成的数据集合</param>
 		/// <returns></returns>
-		public bool EditXmlElementsInstance<T>(string elementName, Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
+		public bool EditXmlElementsInstance<T>(IEnumerable<T> dataList) where T : class, new()
 		{
-			return EditXmlElementsByDataInstance<T>(elementName, match, dataList, false);
+			return EditXmlElementsInstance<T>(dataList, null);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public bool EditXmlElementsInstance<T>(IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElementsInstance<T>(typeof(T).Name, dataList, match);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public bool EditXmlElementsInstance<T>(string elementName, IEnumerable<T> dataList) where T : class, new()
+		{
+			return EditXmlElementsInstance<T>(elementName, dataList, null);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public bool EditXmlElementsInstance<T>(string elementName, IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElementsByDataInstance<T>(elementName, dataList, match, false);
 		}
 
 		/// <summary>
 		/// 替换xml文件中指定类型匹配项的数据
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="model">要修改成的数据</param>
 		/// <returns></returns>
-		public bool ReplaceXmlElementInstance<T>(Predicate<XElement> match, T model) where T : class, new()
+		public bool ReplaceXmlElementInstance<T>(T model) where T : class, new()
 		{
-			return ReplaceXmlElementInstance<T>(typeof(T).Name, match, model);
+			return ReplaceXmlElementInstance<T>(model, null);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="model">要修改成的数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public bool ReplaceXmlElementInstance<T>(T model, Predicate<XElement> match) where T : class, new()
+		{
+			return ReplaceXmlElementInstance<T>(typeof(T).Name, model, match);
 		}
 
 		/// <summary>
@@ -247,24 +392,11 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="model">要修改成的数据</param>
 		/// <returns></returns>
-		public bool ReplaceXmlElementInstance<T>(string elementName, Predicate<XElement> match, T model) where T : class, new()
+		public bool ReplaceXmlElementInstance<T>(string elementName, T model) where T : class, new()
 		{
-			return ReplaceXmlElementsInstance<T>(elementName, match, new List<T>() { model });
-		}
-
-		/// <summary>
-		/// 替换xml文件中指定类型匹配项的数据
-		/// </summary>
-		/// <typeparam name="T">类型</typeparam>
-		/// <param name="match">定义要搜索的元素的条件</param>
-		/// <param name="dataList">要修改成的数据集合</param>
-		/// <returns></returns>
-		public bool ReplaceXmlElementsInstance<T>(Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
-		{
-			return ReplaceXmlElementsInstance<T>(typeof(T).Name, match, dataList);
+			return ReplaceXmlElementInstance<T>(elementName, model, null);
 		}
 
 		/// <summary>
@@ -272,12 +404,60 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="elementName">元素名</param>
+		/// <param name="model">要修改成的数据</param>
 		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public bool ReplaceXmlElementInstance<T>(string elementName, T model, Predicate<XElement> match) where T : class, new()
+		{
+			return ReplaceXmlElementsInstance<T>(elementName, new List<T>() { model }, match);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
 		/// <param name="dataList">要修改成的数据集合</param>
 		/// <returns></returns>
-		public bool ReplaceXmlElementsInstance<T>(string elementName, Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
+		public bool ReplaceXmlElementsInstance<T>(IEnumerable<T> dataList) where T : class, new()
 		{
-			return EditXmlElementsByDataInstance<T>(elementName, match, dataList, true);
+			return ReplaceXmlElementsInstance<T>(dataList, null);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public bool ReplaceXmlElementsInstance<T>(IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return ReplaceXmlElementsInstance<T>(typeof(T).Name, dataList, match);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public bool ReplaceXmlElementsInstance<T>(string elementName, IEnumerable<T> dataList) where T : class, new()
+		{
+			return ReplaceXmlElementsInstance<T>(elementName, dataList, null);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public bool ReplaceXmlElementsInstance<T>(string elementName, IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElementsByDataInstance<T>(elementName, dataList, match, true);
 		}
 
 		/// <summary>
@@ -289,9 +469,9 @@ namespace WebSite.Common.UtilityClass
 		/// <param name="dataList">要修改成的数据的集合</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private bool EditXmlElementsByDataInstance<T>(string elementName, Predicate<XElement> match, IEnumerable<T> dataList, bool isReplace) where T : class, new()
+		private bool EditXmlElementsByDataInstance<T>(string elementName, IEnumerable<T> dataList, Predicate<XElement> match, bool isReplace) where T : class, new()
 		{
-			return m_isAuthorityFile && EditXmlElementsByDataCollection(m_rootXElement, elementName, match, dataList, isReplace);
+			return m_isAuthorityFile && EditXmlElementsByDataCollection(m_rootXElement, elementName, dataList, match, isReplace);
 		}
 
 		#endregion
@@ -302,37 +482,37 @@ namespace WebSite.Common.UtilityClass
 		/// 修改xml文件中指定类型匹配项的数据
 		/// </summary>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <returns></returns>
-		public bool EditXmlElementInstance(string elementName, Predicate<XElement> match, string jsonString)
+		public bool EditXmlElementInstance(string elementName, string jsonString, Predicate<XElement> match)
 		{
-			return EditXmlElementsByDataInstance(elementName, match, jsonString, false);
+			return EditXmlElementsByDataInstance(elementName, jsonString, match, false);
 		}
 
 		/// <summary>
 		/// 替换xml文件中指定类型匹配项的数据
 		/// </summary>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <returns></returns>
-		public bool ReplaceXmlElementInstance(string elementName, Predicate<XElement> match, string jsonString)
+		public bool ReplaceXmlElementInstance(string elementName, string jsonString, Predicate<XElement> match)
 		{
-			return EditXmlElementsByDataInstance(elementName, match, jsonString, true);
+			return EditXmlElementsByDataInstance(elementName, jsonString, match, true);
 		}
 
 		/// <summary>
 		/// 修改xml文件中指定类型匹配项的数据
 		/// </summary>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private bool EditXmlElementsByDataInstance(string elementName, Predicate<XElement> match, string jsonString, bool isReplace)
+		private bool EditXmlElementsByDataInstance(string elementName, string jsonString, Predicate<XElement> match, bool isReplace)
 		{
-			return m_isAuthorityFile && EditXmlElementsByJsonData(m_rootXElement, elementName, match, jsonString, isReplace);
+			return m_isAuthorityFile && EditXmlElementsByJsonData(m_rootXElement, elementName, jsonString, match, isReplace);
 		}
 
 		#endregion
@@ -345,11 +525,31 @@ namespace WebSite.Common.UtilityClass
 		/// 删除xml文件中匹配项的数据
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
+		/// <returns></returns>
+		public bool DeleteXmlElementsInstance<T>() where T : class, new()
+		{
+			return DeleteXmlElementsInstance<T>(null);
+		}
+
+		/// <summary>
+		/// 删除xml文件中匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
 		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <returns></returns>
 		public bool DeleteXmlElementsInstance<T>(Predicate<XElement> match) where T : class, new()
 		{
 			return DeleteXmlElementsInstance(typeof(T).Name, match);
+		}
+
+		/// <summary>
+		/// 删除xml文件中匹配项的数据
+		/// </summary>
+		/// <param name="elementName">元素名</param>
+		/// <returns></returns>
+		public bool DeleteXmlElementsInstance(string elementName)
+		{
+			return DeleteXmlElementsInstance(elementName, null);
 		}
 
 		/// <summary>
@@ -412,11 +612,11 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
-		/// <param name="elementName">元素名</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <returns>实例集合</returns>
-		public static List<T> GetXmlElements<T>(string filePath, string elementName) where T : class, new()
+		public static List<T> GetXmlElements<T>(string filePath, Predicate<string> match) where T : class, new()
 		{
-			return GetXmlElements<T>(filePath, elementName, null);
+			return GetXmlElements<T>(filePath, typeof(T).Name, match);
 		}
 
 		/// <summary>
@@ -424,11 +624,11 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <param name="elementName">元素名</param>
 		/// <returns>实例集合</returns>
-		public static List<T> GetXmlElements<T>(string filePath, Predicate<string> match) where T : class, new()
+		public static List<T> GetXmlElements<T>(string filePath, string elementName) where T : class, new()
 		{
-			return GetXmlElements<T>(filePath, typeof(T).Name, match);
+			return GetXmlElements<T>(filePath, elementName, null);
 		}
 
 		/// <summary>
@@ -457,11 +657,36 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="model">要修改成的数据</param>
+		/// <returns></returns>
+		public static bool AddXmlElement<T>(string filePath, T model) where T : class, new()
+		{
+			return AddXmlElement<T>(filePath, model, null);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="model">要修改成的数据</param>
 		/// <param name="parentElementFunc">获取要写入的父元素</param>
 		/// <returns></returns>
 		public static bool AddXmlElement<T>(string filePath, T model, Func<XElement, XElement> parentElementFunc) where T : class, new()
 		{
 			return AddXmlElement<T>(filePath, typeof(T).Name, model, parentElementFunc);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="model">要修改成的数据</param>
+		/// <returns></returns>
+		public static bool AddXmlElement<T>(string filePath, string elementName, T model) where T : class, new()
+		{
+			return AddXmlElement<T>(filePath, elementName, model, null);
 		}
 
 		/// <summary>
@@ -484,11 +709,36 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public static bool AddXmlElements<T>(string filePath, ICollection<T> dataList) where T : class, new()
+		{
+			return AddXmlElements<T>(filePath, dataList, null);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="dataList">要修改成的数据集合</param>
 		/// <param name="parentElementFunc">获取要写入的父元素</param>
 		/// <returns></returns>
 		public static bool AddXmlElements<T>(string filePath, ICollection<T> dataList, Func<XElement, XElement> parentElementFunc) where T : class, new()
 		{
 			return AddXmlElements<T>(filePath, typeof(T).Name, dataList, parentElementFunc);
+		}
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public static bool AddXmlElements<T>(string filePath, string elementName, ICollection<T> dataList) where T : class, new()
+		{
+			return AddXmlElements<T>(filePath, elementName, dataList, null);
 		}
 
 		/// <summary>
@@ -516,6 +766,18 @@ namespace WebSite.Common.UtilityClass
 		#endregion
 
 		#region Json对象
+
+		/// <summary>
+		/// 添加xml文件中指定类型的数据
+		/// </summary>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <returns></returns>
+		public static bool AddXmlElements(string filePath, string elementName, string jsonString)
+		{
+			return AddXmlElements(filePath, elementName, jsonString, null);
+		}
 
 		/// <summary>
 		/// 添加xml文件中指定类型的数据
@@ -551,12 +813,24 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="model">要修改成的数据</param>
 		/// <returns></returns>
-		public static bool EditXmlElement<T>(string filePath, Predicate<XElement> match, T model) where T : class, new()
+		public static bool EditXmlElement<T>(string filePath, T model) where T : class, new()
 		{
-			return EditXmlElement<T>(filePath, typeof(T).Name, match, model);
+			return EditXmlElement<T>(filePath, model, null);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="model">要修改成的数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool EditXmlElement<T>(string filePath, T model, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElement<T>(filePath, typeof(T).Name, model, match);
 		}
 
 		/// <summary>
@@ -565,25 +839,11 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="model">要修改成的数据</param>
 		/// <returns></returns>
-		public static bool EditXmlElement<T>(string filePath, string elementName, Predicate<XElement> match, T model) where T : class, new()
+		public static bool EditXmlElement<T>(string filePath, string elementName, T model) where T : class, new()
 		{
-			return EditXmlElementsByData<T>(filePath, elementName, match, new List<T>() { model }, false);
-		}
-
-		/// <summary>
-		/// 修改xml文件中指定类型匹配项的数据
-		/// </summary>
-		/// <typeparam name="T">类型</typeparam>
-		/// <param name="filePath">xml文件的路径</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
-		/// <param name="dataList">要修改成的数据集合</param>
-		/// <returns></returns>
-		public static bool EditXmlElements<T>(string filePath, Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
-		{
-			return EditXmlElements<T>(filePath, typeof(T).Name, match, dataList);
+			return EditXmlElement<T>(filePath, elementName, model, null);
 		}
 
 		/// <summary>
@@ -592,12 +852,64 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="elementName">元素名</param>
+		/// <param name="model">要修改成的数据</param>
 		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool EditXmlElement<T>(string filePath, string elementName, T model, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElements<T>(filePath, elementName, new List<T>() { model }, match);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="dataList">要修改成的数据集合</param>
 		/// <returns></returns>
-		public static bool EditXmlElements<T>(string filePath, string elementName, Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
+		public static bool EditXmlElements<T>(string filePath, IEnumerable<T> dataList) where T : class, new()
 		{
-			return EditXmlElementsByData<T>(filePath, elementName, match, dataList, false);
+			return EditXmlElements<T>(filePath, dataList, null);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool EditXmlElements<T>(string filePath, IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElements<T>(filePath, typeof(T).Name, dataList, match);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public static bool EditXmlElements<T>(string filePath, string elementName, IEnumerable<T> dataList) where T : class, new()
+		{
+			return EditXmlElements<T>(filePath, elementName, dataList, null);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool EditXmlElements<T>(string filePath, string elementName, IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElementsByData<T>(filePath, elementName, dataList, match, false);
 		}
 
 		/// <summary>
@@ -605,12 +917,24 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="model">要修改成的数据</param>
 		/// <returns></returns>
-		public static bool ReplaceXmlElement<T>(string filePath, Predicate<XElement> match, T model) where T : class, new()
+		public static bool ReplaceXmlElement<T>(string filePath, T model) where T : class, new()
 		{
-			return ReplaceXmlElement<T>(filePath, typeof(T).Name, match, model);
+			return ReplaceXmlElement<T>(filePath, model, null);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="model">要修改成的数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool ReplaceXmlElement<T>(string filePath, T model, Predicate<XElement> match) where T : class, new()
+		{
+			return ReplaceXmlElement<T>(filePath, typeof(T).Name, model, match);
 		}
 
 		/// <summary>
@@ -619,25 +943,12 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="model">要修改成的数据</param>
-		/// <returns></returns>
-		public static bool ReplaceXmlElement<T>(string filePath, string elementName, Predicate<XElement> match, T model) where T : class, new()
-		{
-			return EditXmlElementsByData<T>(filePath, elementName, match, new List<T>() { model }, true);
-		}
-
-		/// <summary>
-		/// 替换xml文件中指定类型匹配项的数据
-		/// </summary>
-		/// <typeparam name="T">类型</typeparam>
-		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="match">定义要搜索的元素的条件</param>
-		/// <param name="dataList">要修改成的数据集合</param>
 		/// <returns></returns>
-		public static bool ReplaceXmlElements<T>(string filePath, Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
+		public static bool ReplaceXmlElement<T>(string filePath, string elementName, T model) where T : class, new()
 		{
-			return ReplaceXmlElements<T>(filePath, typeof(T).Name, match, dataList);
+			return ReplaceXmlElement<T>(filePath, elementName, model, null);
 		}
 
 		/// <summary>
@@ -646,12 +957,64 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="elementName">元素名</param>
+		/// <param name="model">要修改成的数据</param>
 		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool ReplaceXmlElement<T>(string filePath, string elementName, T model, Predicate<XElement> match) where T : class, new()
+		{
+			return ReplaceXmlElements<T>(filePath, elementName, new List<T>() { model }, match);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="dataList">要修改成的数据集合</param>
 		/// <returns></returns>
-		public static bool ReplaceXmlElements<T>(string filePath, string elementName, Predicate<XElement> match, IEnumerable<T> dataList) where T : class, new()
+		public static bool ReplaceXmlElements<T>(string filePath, IEnumerable<T> dataList) where T : class, new()
 		{
-			return EditXmlElementsByData<T>(filePath, elementName, match, dataList, true);
+			return ReplaceXmlElements<T>(filePath, dataList, null);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool ReplaceXmlElements<T>(string filePath, IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return ReplaceXmlElements<T>(filePath, typeof(T).Name, dataList, match);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <returns></returns>
+		public static bool ReplaceXmlElements<T>(string filePath, string elementName, IEnumerable<T> dataList) where T : class, new()
+		{
+			return ReplaceXmlElements<T>(filePath, elementName, dataList, null);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="dataList">要修改成的数据集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool ReplaceXmlElements<T>(string filePath, string elementName, IEnumerable<T> dataList, Predicate<XElement> match) where T : class, new()
+		{
+			return EditXmlElementsByData<T>(filePath, elementName, dataList, match, true);
 		}
 
 		/// <summary>
@@ -664,11 +1027,11 @@ namespace WebSite.Common.UtilityClass
 		/// <param name="dataList">要修改成的数据的集合</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private static bool EditXmlElementsByData<T>(string filePath, string elementName, Predicate<XElement> match, IEnumerable<T> dataList, bool isReplace) where T : class, new()
+		private static bool EditXmlElementsByData<T>(string filePath, string elementName, IEnumerable<T> dataList, Predicate<XElement> match, bool isReplace) where T : class, new()
 		{
 			bool isOK = false;
 			XElement rootElement = GetRootElement(filePath).Key;
-			if (rootElement != null && EditXmlElementsByDataCollection(rootElement, elementName, match, dataList, isReplace))
+			if (rootElement != null && EditXmlElementsByDataCollection(rootElement, elementName, dataList, match, isReplace))
 			{
 				rootElement.Save(filePath);
 				isOK = true;
@@ -685,25 +1048,11 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="jsonString">要修改成的Json数据</param>
 		/// <returns></returns>
-		public static bool EditXmlElement(string filePath, string elementName, Predicate<XElement> match, string jsonString)
+		public static bool EditXmlElement(string filePath, string elementName, string jsonString)
 		{
-			return EditXmlElementsByData(filePath, elementName, match, jsonString, false);
-		}
-
-		/// <summary>
-		/// 替换xml文件中指定类型匹配项的数据
-		/// </summary>
-		/// <param name="filePath">xml文件的路径</param>
-		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
-		/// <param name="jsonString">要修改成的Json数据</param>
-		/// <returns></returns>
-		public static bool ReplaceXmlElement(string filePath, string elementName, Predicate<XElement> match, string jsonString)
-		{
-			return EditXmlElementsByData(filePath, elementName, match, jsonString, true);
+			return EditXmlElement(filePath, elementName, jsonString, null);
 		}
 
 		/// <summary>
@@ -711,15 +1060,53 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool EditXmlElement(string filePath, string elementName, string jsonString, Predicate<XElement> match)
+		{
+			return EditXmlElementsByData(filePath, elementName, jsonString, match, false);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <returns></returns>
+		public static bool ReplaceXmlElement(string filePath, string elementName, string jsonString)
+		{
+			return ReplaceXmlElement(filePath, elementName, jsonString, null);
+		}
+
+		/// <summary>
+		/// 替换xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
+		/// <returns></returns>
+		public static bool ReplaceXmlElement(string filePath, string elementName, string jsonString, Predicate<XElement> match)
+		{
+			return EditXmlElementsByData(filePath, elementName, jsonString, match, true);
+		}
+
+		/// <summary>
+		/// 修改xml文件中指定类型匹配项的数据
+		/// </summary>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private static bool EditXmlElementsByData(string filePath, string elementName, Predicate<XElement> match, string jsonString, bool isReplace)
+		private static bool EditXmlElementsByData(string filePath, string elementName, string jsonString, Predicate<XElement> match, bool isReplace)
 		{
 			bool isOK = false;
 			XElement rootElement = GetRootElement(filePath).Key;
-			if (rootElement != null && EditXmlElementsByJsonData(rootElement, elementName, match, jsonString, isReplace))
+			if (rootElement != null && EditXmlElementsByJsonData(rootElement, elementName, jsonString, match, isReplace))
 			{
 				rootElement.Save(filePath);
 				isOK = true;
@@ -738,11 +1125,33 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="filePath">xml文件的路径</param>
+		/// <returns></returns>
+		public static bool DeleteXmlElements<T>(string filePath) where T : class, new()
+		{
+			return DeleteXmlElements<T>(filePath, null);
+		}
+
+		/// <summary>
+		/// 删除xml文件中匹配项的数据
+		/// </summary>
+		/// <typeparam name="T">类型</typeparam>
+		/// <param name="filePath">xml文件的路径</param>
 		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <returns></returns>
 		public static bool DeleteXmlElements<T>(string filePath, Predicate<XElement> match) where T : class, new()
 		{
 			return DeleteXmlElements(filePath, typeof(T).Name, match);
+		}
+
+		/// <summary>
+		/// 删除xml文件中匹配项的数据
+		/// </summary>
+		/// <param name="filePath">xml文件的路径</param>
+		/// <param name="elementName">元素名</param>
+		/// <returns></returns>
+		public static bool DeleteXmlElements(string filePath, string elementName)
+		{
+			return DeleteXmlElements(filePath, elementName, null);
 		}
 
 		/// <summary>
@@ -1304,11 +1713,11 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="parentElement">父元素</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="dataList">要修改成的数据的集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private static bool EditXmlElementsByDataCollection<T>(XElement parentElement, string elementName, Predicate<XElement> match, IEnumerable<T> dataList, bool isReplace) where T : class, new()
+		private static bool EditXmlElementsByDataCollection<T>(XElement parentElement, string elementName, IEnumerable<T> dataList, Predicate<XElement> match, bool isReplace) where T : class, new()
 		{
 			bool isOK = false;
 			try
@@ -1318,7 +1727,7 @@ namespace WebSite.Common.UtilityClass
 					//string elementString = JsonConvert.SerializeObject(parentElement);
 					//var matchCopyElement = JsonConvert.DeserializeObject<XElement>(elementString);
 					int dataCount = dataList != null ? dataList.Count() : 0;
-					isOK = dataCount > 0 && EditElementListToXml(parentElement, elementName, match, dataList.ToList(), isReplace);
+					isOK = dataCount > 0 && EditElementListToXml(parentElement, elementName, dataList.ToList(), match, isReplace);
 				}
 			}
 			catch (Exception ex)
@@ -1332,11 +1741,11 @@ namespace WebSite.Common.UtilityClass
 		/// <typeparam name="T">类型</typeparam>
 		/// <param name="parentElement">父元素</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="dataList">要修改成的数据的集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private static bool EditElementListToXml(XElement parentElement, string elementName, Predicate<XElement> match, IList dataList, bool isReplace)
+		private static bool EditElementListToXml(XElement parentElement, string elementName, IList dataList, Predicate<XElement> match, bool isReplace)
 		{
 			bool isOK = false;
 			int dataCount = dataList != null ? dataList.Count : 0;
@@ -1374,7 +1783,7 @@ namespace WebSite.Common.UtilityClass
 							{
 								temp = propertyValue;
 							}
-							EditElementListToXml(originElement, propertyInfo.Name, match, temp as IList, isReplace);
+							EditElementListToXml(originElement, propertyInfo.Name, temp as IList, match, isReplace);
 						}
 						else
 						{
@@ -1404,11 +1813,11 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <param name="parentElement">父元素</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="jsonString">要修改成的Json数据</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private static bool EditXmlElementsByJsonData(XElement parentElement, string elementName, Predicate<XElement> match, string jsonString, bool isReplace)
+		private static bool EditXmlElementsByJsonData(XElement parentElement, string elementName, string jsonString, Predicate<XElement> match, bool isReplace)
 		{
 			bool isOK = false;
 			try
@@ -1418,7 +1827,7 @@ namespace WebSite.Common.UtilityClass
 					JToken jToken = JsonConvert.DeserializeObject(jsonString) as JToken;
 					JArray jArray = GetJArrayByJToken(jToken);
 					int dataCount = jArray != null ? jArray.Count : 0;
-					isOK = parentElement != null && dataCount > 0 && EditXmlElementListByJson(parentElement, elementName, match, jArray, isReplace);
+					isOK = parentElement != null && dataCount > 0 && EditXmlElementListByJson(parentElement, elementName, jArray, match, isReplace);
 				}
 			}
 			catch (Exception ex)
@@ -1431,11 +1840,11 @@ namespace WebSite.Common.UtilityClass
 		/// </summary>
 		/// <param name="parentElement">父元素</param>
 		/// <param name="elementName">元素名</param>
-		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="jArray">要修改成的数据的集合</param>
+		/// <param name="match">定义要搜索的元素的条件</param>
 		/// <param name="isReplace">是否替换</param>
 		/// <returns></returns>
-		private static bool EditXmlElementListByJson(XElement parentElement, string elementName, Predicate<XElement> match, JArray jArray, bool isReplace)
+		private static bool EditXmlElementListByJson(XElement parentElement, string elementName, JArray jArray, Predicate<XElement> match, bool isReplace)
 		{
 			bool isOK = false;
 			int dataCount = jArray != null ? jArray.Count : 0;
@@ -1468,7 +1877,7 @@ namespace WebSite.Common.UtilityClass
 								{
 									JArrayValue = jsonValue as JArray;
 								}
-								EditXmlElementListByJson(originElement, item.Key, match, JArrayValue, isReplace);
+								EditXmlElementListByJson(originElement, item.Key, JArrayValue, match, isReplace);
 							}
 							else
 							{

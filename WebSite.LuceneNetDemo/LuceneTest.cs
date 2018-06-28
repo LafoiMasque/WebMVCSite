@@ -101,8 +101,8 @@ namespace WebSite.LuceneNetDemo
 		{
 			StringBuilder queryStringBuilder = new StringBuilder();
 			ILuceneAnalyze analyzer = new LuceneAnalyze();
-			string[] words = analyzer.AnalyzerKey(keyword, "title");
-			if (words.Length == 1)
+			List<string> words = analyzer.AnalyzerKey(keyword, "title");
+			if (words.Count == 1)
 			{
 				queryStringBuilder.AppendFormat("{0}:{1}* ", "title", words[0]);
 			}

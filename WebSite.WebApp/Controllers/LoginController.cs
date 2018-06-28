@@ -5,6 +5,7 @@ using WebSite.Common.UtilityClass;
 using WebSite.Core;
 using WebSite.IBLL.SingletonPattern;
 using WebSite.Model.DataModel;
+using WebSite.Model.EnumType;
 
 namespace WebSite.WebApp.Controllers
 {
@@ -79,7 +80,7 @@ namespace WebSite.WebApp.Controllers
 					}
 				}
 			}
-			ResultModel<string> resultModel = new ResultModel<string>(new CodeMessage(resultCodeEnum, message));
+			ResultModel<string> resultModel = new ResultModel<string>(resultCodeEnum, message);
 			return Json(resultModel, JsonRequestBehavior.AllowGet);
 		}
 	}
