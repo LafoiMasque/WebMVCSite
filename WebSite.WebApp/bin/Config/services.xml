@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object name="UserInfoService" type="WebSite.BLL.SingletonPattern.UserInfoService, WebSite.BLL" singleton="false"/>
+  <object name="RoleInfoService" type="WebSite.BLL.SingletonPattern.RoleInfoService, WebSite.BLL" singleton="false"/>
+  <object name="ActionInfoService" type="WebSite.BLL.SingletonPattern.ActionInfoService, WebSite.BLL" singleton="false"/>
+  <object name="UserInfo_ActionInfoService" type="WebSite.BLL.SingletonPattern.UserInfo_ActionInfoService, WebSite.BLL" singleton="false"/>
+  <object name="JD_Commodity_001Service" type="WebSite.BLL.SingletonPattern.JD_Commodity_001Service, WebSite.BLL" singleton="false"/>
+  <object name="KeyWordsRankService" type="WebSite.BLL.SingletonPattern.KeyWordsRankService, WebSite.BLL" singleton="false"/>
+  <object name="SearchDetailsService" type="WebSite.BLL.SingletonPattern.SearchDetailsService, WebSite.BLL" singleton="false"/>
+</objects>

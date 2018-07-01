@@ -15,3 +15,11 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQCo
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csprojResolveAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\bin\Debug\WebMVCSiter.RbitMQConsumer.exe.config
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\bin\Debug\WebMVCSiter.RbitMQConsumer.exe
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\bin\Debug\WebMVCSiter.RbitMQConsumer.pdb
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csprojAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csproj.CoreCompileInputs.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebSiter.RbitMQConsumer.csproj.CopyComplete
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.exe
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RbitMQConsumer\obj\Debug\WebMVCSiter.RbitMQConsumer.pdb

@@ -15,3 +15,11 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitM
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csprojResolveAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\WebSite.RabbitMQProducer.exe.config
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\WebSite.RabbitMQProducer.exe
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\bin\Debug\WebSite.RabbitMQProducer.pdb
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csprojAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csproj.CoreCompileInputs.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.csproj.CopyComplete
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.exe
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.RabbitMQProducer\obj\Debug\WebSite.RabbitMQProducer.pdb

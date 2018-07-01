@@ -10,3 +10,15 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDem
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.exe
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.csprojResolveAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\bin\Debug\WebSite.MemcacheDemo.exe.config
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\bin\Debug\WebSite.MemcacheDemo.exe
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\bin\Debug\WebSite.MemcacheDemo.pdb
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\bin\Debug\Commons.dll
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\bin\Debug\log4net.dll
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\bin\Debug\Memcached.ClientLibrary.dll
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.csprojAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.csproj.CoreCompileInputs.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.csproj.CopyComplete
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.exe
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.MemcacheDemo\obj\Debug\WebSite.MemcacheDemo.pdb

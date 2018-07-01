@@ -7,3 +7,12 @@ D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csproj.Cop
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.dll
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.pdb
 D:\CodeTemp\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csprojResolveAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\bin\Debug\WebSite.Common.dll
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\bin\Debug\WebSite.Common.pdb
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.dll
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\bin\Debug\Newtonsoft.Json.xml
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csprojAssemblyReference.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csproj.CoreCompileInputs.cache
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.csproj.CopyComplete
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.dll
+D:\ProjectCode\VS2017\WebMVCSite\WebSite.Common\obj\Debug\WebSite.Common.pdb

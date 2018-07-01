@@ -14,7 +14,7 @@ namespace WebSite.Common.UtilityClass
 	/// <summary>
 	/// 操作Xml文件相关方法
 	/// </summary>
-	public class XmlUtils
+		public class XmlUtils
 	{
 		#region 实例部分
 
@@ -30,21 +30,9 @@ namespace WebSite.Common.UtilityClass
 		/// <param name="filePath">文件路径</param>
 		public void BeginInitialize(string filePath)
 		{
-			BeginInitialize(filePath, null);
-		}
-
-		/// <summary>
-		/// 开始初始化
-		/// </summary>
-		/// <param name="filePath">文件路径</param>
-		/// <param name="elementName">元素名</param>
-		public void BeginInitialize(string filePath, string elementName)
-		{
 			m_filePath = filePath;
 			KeyValuePair<XElement, bool> keyValuePair = GetRootElement(filePath);
 			m_rootXElement = keyValuePair.Key;
-			if (m_rootXElement == null && !string.IsNullOrEmpty(elementName))
-				m_rootXElement = new XElement(elementName);
 			m_isAuthorityFile = keyValuePair.Value;
 		}
 
@@ -54,7 +42,9 @@ namespace WebSite.Common.UtilityClass
 		public void EndInitialize()
 		{
 			if (m_isAuthorityFile)
+			{
 				m_rootXElement.Save(m_filePath);
+			}
 		}
 
 		#region 查询
@@ -133,6 +123,24 @@ namespace WebSite.Common.UtilityClass
 		#endregion
 
 		#region 添加
+
+		#region 公用
+
+		/// <summary>
+		/// 保存xml文件
+		/// </summary>
+		/// <param name="rootElement">根元素</param>
+		/// <param name="filePath">文件路径</param>
+		/// <returns></returns>
+		private bool CreateDirectoryBefromSave()
+		{
+			bool isOK = m_rootXElement != null;
+			if (isOK)
+				CreateXmlDirectory(m_filePath);
+			return true;
+		}
+
+		#endregion
 
 		#region 集合类型
 
@@ -229,8 +237,9 @@ namespace WebSite.Common.UtilityClass
 		/// <returns></returns>
 		public bool AddXmlElementsInstance<T>(string elementName, IEnumerable<T> dataList, Func<XElement, XElement> parentElementFunc) where T : class, new()
 		{
+			m_isAuthorityFile = true;
 			m_rootXElement = AddXmlElementsBytDataCollection(m_rootXElement, elementName, dataList, parentElementFunc);
-			return m_rootXElement != null;
+			return CreateDirectoryBefromSave();
 		}
 
 		#endregion
@@ -257,7 +266,9 @@ namespace WebSite.Common.UtilityClass
 		/// <returns></returns>
 		public bool AddXmlElementInstance(string elementName, string jsonString, Func<XElement, XElement> parentElementFunc)
 		{
-			return AddXmlElementsBytJsonData(m_rootXElement, elementName, jsonString, parentElementFunc) != null;
+			m_isAuthorityFile = true;
+			m_rootXElement = AddXmlElementsBytJsonData(m_rootXElement, elementName, jsonString, parentElementFunc);
+			return CreateDirectoryBefromSave();
 		}
 
 		#endregion
@@ -569,6 +580,22 @@ namespace WebSite.Common.UtilityClass
 
 		#region 静态部分
 
+		#region 公用
+
+		/// <summary>
+		/// 保存xml文件
+		/// </summary>
+		/// <param name="rootElement">根元素</param>
+		/// <param name="filePath">文件路径</param>
+		/// <returns></returns>
+		private static bool SaveXmlElement(XElement rootElement, string filePath)
+		{
+			rootElement.Save(filePath);
+			return true;
+		}
+
+		#endregion
+
 		#region 查询
 
 		/// <summary>
@@ -757,8 +784,8 @@ namespace WebSite.Common.UtilityClass
 			rootElement = AddXmlElementsBytDataCollection(rootElement, elementName, dataList, parentElementFunc);
 			if (rootElement != null)
 			{
-				rootElement.Save(filePath);
-				isOK = true;
+				CreateXmlDirectory(filePath);
+				isOK = SaveXmlElement(rootElement, filePath);
 			}
 			return isOK;
 		}
@@ -794,8 +821,8 @@ namespace WebSite.Common.UtilityClass
 			rootElement = AddXmlElementsBytJsonData(rootElement, elementName, jsonString, parentElementFunc);
 			if (rootElement != null)
 			{
-				rootElement.Save(filePath);
-				isOK = true;
+				CreateXmlDirectory(filePath);
+				isOK = SaveXmlElement(rootElement, filePath);
 			}
 			return isOK;
 		}
@@ -1033,8 +1060,7 @@ namespace WebSite.Common.UtilityClass
 			XElement rootElement = GetRootElement(filePath).Key;
 			if (rootElement != null && EditXmlElementsByDataCollection(rootElement, elementName, dataList, match, isReplace))
 			{
-				rootElement.Save(filePath);
-				isOK = true;
+				isOK = SaveXmlElement(rootElement, filePath);
 			}
 			return isOK;
 		}
@@ -1108,8 +1134,7 @@ namespace WebSite.Common.UtilityClass
 			XElement rootElement = GetRootElement(filePath).Key;
 			if (rootElement != null && EditXmlElementsByJsonData(rootElement, elementName, jsonString, match, isReplace))
 			{
-				rootElement.Save(filePath);
-				isOK = true;
+				isOK = SaveXmlElement(rootElement, filePath);
 			}
 			return isOK;
 		}
@@ -1164,11 +1189,10 @@ namespace WebSite.Common.UtilityClass
 		public static bool DeleteXmlElements(string filePath, string elementName, Predicate<XElement> match)
 		{
 			bool isOK = false;
-			XElement xe = GetRootElement(filePath).Key;
-			if (DeleteElementsFromXml(xe, elementName, match))
+			XElement rootElement = GetRootElement(filePath).Key;
+			if (DeleteElementsFromXml(rootElement, elementName, match))
 			{
-				xe.Save(filePath);
-				isOK = true;
+				isOK = SaveXmlElement(rootElement, filePath);
 			}
 			return isOK;
 		}
@@ -1210,7 +1234,7 @@ namespace WebSite.Common.UtilityClass
 		/// <param name="parentElement">父元素</param>
 		/// <param name="elementName">元素名</param>
 		/// <returns>实例集合</returns>
-		private static IEnumerable<XElement> GetXmlElementInParent(XElement parentElement, string elementName)
+		private static IEnumerable<XElement> GetXmlElementsInParent(XElement parentElement, string elementName)
 		{
 			IEnumerable<XElement> elements = new List<XElement>();
 			if (parentElement != null)
@@ -1222,6 +1246,26 @@ namespace WebSite.Common.UtilityClass
 				}
 			}
 			return elements;
+		}
+
+		/// <summary>
+		/// 在父元素下按文档顺序返回此元素或文档的经过筛选的子元素第一个集合。集合中只包括具有匹配 System.Xml.Linq.XName 的元素。
+		/// </summary>
+		/// <param name="parentElement">父元素</param>
+		/// <param name="elementName">元素名</param>
+		/// <returns>实例</returns>
+		private static XElement GetXmlElementInParent(XElement parentElement, string elementName)
+		{
+			XElement element = null;
+			if (parentElement != null)
+			{
+				element = parentElement.Element(elementName);
+				if (element == null && parentElement.Name == elementName)
+				{
+					element = parentElement;
+				}
+			}
+			return element;
 		}
 
 		#endregion
@@ -1256,7 +1300,7 @@ namespace WebSite.Common.UtilityClass
 		/// <returns>元素集合</returns>
 		private static IEnumerable<XElement> GetMatchElement(XElement parentElement, string elementName, Predicate<XElement> match)
 		{
-			IEnumerable<XElement> childElements = GetXmlElementInParent(parentElement, elementName);
+			IEnumerable<XElement> childElements = GetXmlElementsInParent(parentElement, elementName);
 			var matchElements = (from ele in childElements
 								 where match == null || match(ele)
 								 select ele);
@@ -1302,7 +1346,7 @@ namespace WebSite.Common.UtilityClass
 			bool isExist = false;
 			if (rootElement != null)
 			{
-				IEnumerable<XElement> matchElements = GetXmlElementInParent(rootElement, elementName);
+				IEnumerable<XElement> matchElements = GetXmlElementsInParent(rootElement, elementName);
 				IEnumerable<XElement> elements = from ele in matchElements
 												 where match == null || match(ele)
 												 select ele;
@@ -1327,7 +1371,7 @@ namespace WebSite.Common.UtilityClass
 				if (parentElement != null)
 				{
 					Type type = typeof(T);
-					IEnumerable<XElement> xElements = GetXmlElementInParent(parentElement, elementName);
+					IEnumerable<XElement> xElements = GetXmlElementsInParent(parentElement, elementName);
 					var temp = GetXmlElementListByType(type, xElements, match);
 					if (temp != null)
 					{
@@ -1411,7 +1455,7 @@ namespace WebSite.Common.UtilityClass
 								}
 								if (type != null)
 								{
-									IEnumerable<XElement> elementList = GetXmlElementInParent(ele, type.Name);
+									IEnumerable<XElement> elementList = GetXmlElementsInParent(ele, type.Name);
 									object temp = GetXmlElementListByType(type, elementList, match);
 									if (temp != null && propType.IsArray)
 									{
@@ -1507,6 +1551,44 @@ namespace WebSite.Common.UtilityClass
 
 		#region Add
 
+		#region 公用
+
+		/// <summary>
+		/// 获取目标元素
+		/// </summary>
+		/// <param name="rootElement">根元素</param>
+		/// <param name="elementName">元素名</param>
+		/// <returns></returns>
+		private static XElement GetTargetElement(XElement rootElement, string elementName, Func<XElement, XElement> parentElementFunc)
+		{
+			XElement xElement = null;
+			if (!string.IsNullOrEmpty(elementName))
+			{
+				if (rootElement == null)
+					xElement = new XElement(elementName);
+				else
+					xElement = GetXmlElementInParent(rootElement, elementName);
+			}
+			xElement = parentElementFunc != null ? parentElementFunc(xElement) : xElement;
+			return xElement;
+		}
+
+		/// <summary>
+		/// 创建xml文件父目录
+		/// </summary>
+		/// <param name="filePath">xml文件路径</param>
+		private static void CreateXmlDirectory(string filePath)
+		{
+			FileInfo fileInfo = new FileInfo(filePath);
+			DirectoryInfo directoryInfo = fileInfo.Directory;
+			if (!directoryInfo.Exists)
+			{
+				directoryInfo.Create();
+			}
+		}
+
+		#endregion
+
 		#region 集合类型
 
 		/// <summary>
@@ -1524,7 +1606,7 @@ namespace WebSite.Common.UtilityClass
 			{
 				if (dataList != null && dataList.Count() > 0)
 				{
-					XElement xElement = parentElementFunc != null ? parentElementFunc(rootElement) : rootElement;
+					XElement xElement = GetTargetElement(rootElement, elementName, parentElementFunc);
 					rootElement = AddElementListToXml(xElement, dataList);
 				}
 			}
@@ -1617,7 +1699,7 @@ namespace WebSite.Common.UtilityClass
 			{
 				if (!string.IsNullOrEmpty(jsonString))
 				{
-					XElement xElement = parentElementFunc != null ? parentElementFunc(rootElement) : rootElement;
+					XElement xElement = GetTargetElement(rootElement, elementName, parentElementFunc);
 					JToken jToken = JsonConvert.DeserializeObject(jsonString) as JToken;
 					JArray jArray = GetJArrayByJToken(jToken);
 					rootElement = AddElementListToXmlByJson(xElement, elementName, jArray);
