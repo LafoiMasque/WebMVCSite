@@ -10,7 +10,6 @@ namespace WebSite.DALFactory
 	/// <summary>
 	/// 通过反射的形式创建类的实例
 	/// </summary>
-    /// 20180702Test
 	public class AbstractFactory
 	{
 		private static readonly List<EntityModel> m_entityModelList = null;
