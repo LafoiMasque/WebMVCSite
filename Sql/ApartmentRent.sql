@@ -237,7 +237,7 @@ CREATE TABLE WaterPowerRent
 --水电费ID	
 WaterPowerId UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
 --单号
-BillNo VARCHAR(36) NOT NULL UNIQUE,
+BillNo VARCHAR(36) NOT NULL,-- UNIQUE 测试后需注释唯一 VIDIC
 --1 水费 2 电费
 Type TINYINT,  
 --起始日期
